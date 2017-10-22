@@ -72,9 +72,14 @@ body {
   outline: none;
   border: none;
   background-color: #5baddc;
-  padding: 10px;
+  color: #383a3c;
+  padding: 10px 35px;
   margin-top: -35px;
   transition: margin .5s;
+  background-repeat: no-repeat;
+  background-size: 18px 18px;
+  background-position: 10px center;
+  background-image: url(icons/searchIcon.svg);
 }
 
 .searchBarOpen {
@@ -82,7 +87,7 @@ body {
 }
 
 .searchBar::placeholder {
-  color: white;
+  color: #696d75;
 }
 
 #searchIcon, #xIcon {
