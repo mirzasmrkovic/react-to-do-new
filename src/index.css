@@ -10,9 +10,8 @@ body {
   display: flex;
   flex-direction: column;
   background-color: #5b86dc;
-  background: linear-gradient(bottom left, #5b86dc, #739def);
+  background: linear-gradient(to right, #5b86dc, #739def);
   box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.5);
-  max-width: ;
 }
 
 #header {
@@ -21,6 +20,8 @@ body {
   justify-content: space-around;
   padding: 10px;
   background-color: #5BBEB6;
+  position: relative;
+  z-index: 5;
 }
 
 .gradient {
@@ -60,16 +61,44 @@ body {
   margin: 0px 10px;
 }
 
-#searchIcon {
+#searchBarContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.searchBar {
+  width: auto;
+  display: flex;
+  outline: none;
+  border: none;
+  background-color: #5baddc;
+  padding: 10px;
+  margin-top: -35px;
+  transition: margin .5s;
+}
+
+.searchBarOpen {
+  margin-top: 0px;
+}
+
+.searchBar::placeholder {
+  color: white;
+}
+
+#searchIcon, #xIcon {
   fill: rgb(111,114,123);
   width: 18px;
   height: 18px;
   padding: 5px;
 }
 
-#searchIcon:hover {
+#searchIcon:hover, #xIcon:hover {
   fill: rgba(111,114,123,0.5);
   cursor: pointer;
+}
+
+#xIcon {
+  display: none;
 }
 
 #toDoBody {
@@ -82,7 +111,7 @@ body {
   background-color: #5BDCB6;
   border: 1px solid rgba(51,51,51,0.4);
   border-radius: 20px;
-  box-shadow: -3px 8px 5px 0px rgba(91,220,182,0.5);
+  box-shadow: -2px 5px 5px 0px rgba(91,220,182,0.5);
 }
 
 #userGreet {
@@ -92,7 +121,7 @@ body {
 }
 
 #inspirationQuote {
-  max-width: 300px;
+  max-width: 350px;
 }
 
 .quote {

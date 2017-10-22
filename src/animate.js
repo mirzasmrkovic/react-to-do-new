@@ -1,5 +1,10 @@
 import anime from 'animejs'
+import $ from 'jquery'
 
-anime({
+let searchBar = function() {
+  anime({})
+}
 
+$(document).ready(function() {
+  searchBar()
 })

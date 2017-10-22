@@ -2,12 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './animate.js'
 import './index.css';
+import './script.js'
 import registerServiceWorker from './registerServiceWorker';
 registerServiceWorker();
 
-//ReactDOM.render(, document.getElementById('root'))
-
-let randomNumber = Math.floor((Math.random() * 19))
+let randomNumber = Math.floor((Math.random() * 18))
 
 let inspiration = [
   {'quote': "Whatever you are, be a good one.", 'author': "Abraham Lincoln"},
@@ -34,3 +33,60 @@ ReactDOM.render(
   <div className='quote'>{inspiration[randomNumber].quote}<div className='author'>&emsp;&emsp; - <b>{inspiration[randomNumber].author}</b></div></div>,
   document.getElementById('inspirationQuote')
 )
+
+ReactDOM.render(<input className='searchBar' placeholder='Search for a to-do'/>, document.getElementById('searchBarContainer'))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**/
