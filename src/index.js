@@ -30,13 +30,26 @@ let inspiration = [
 ]
 
 ReactDOM.render(
-  <div className='quote'>{inspiration[randomNumber].quote}<div className='author'>&emsp;&emsp; - <b>{inspiration[randomNumber].author}</b></div></div>,
+  <div className='quote'>{inspiration[randomNumber].quote}
+    <div className='author'>&emsp;&emsp; - <b>{inspiration[randomNumber].author}</b></div>
+  </div>,
   document.getElementById('inspirationQuote')
+)
+
+ReactDOM.render(
+  <span>You have {randomNumber /*placeholder*/} tasks todo today.</span>,
+  document.getElementById('taskCount')
 )
 
 ReactDOM.render(<input className='searchBar' placeholder='Search for a to-do'/>, document.getElementById('searchBarContainer'))
 
-
+let today = new Date()
+let dd = today.getDate()
+let mm = today.getMonth()
+let yyyy = today.getFullYear()
+let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+let date = months[mm] + ' ' + dd + ', ' + yyyy
+ReactDOM.render(<span>TODAY: {date.toUpperCase()}</span>, document.getElementById('date'))
 
 
 
