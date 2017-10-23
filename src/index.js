@@ -2,11 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './animate.js'
 import './index.css';
-import './script.js'
+//import './script.js'
+import $ from 'jquery'
 import registerServiceWorker from './registerServiceWorker';
 registerServiceWorker();
-
-let randomNumber = Math.floor((Math.random() * 18))
 
 let inspiration = [
   {'quote': "Whatever you are, be a good one.", 'author': "Abraham Lincoln"},
@@ -29,27 +28,39 @@ let inspiration = [
   {'quote': "Eighty percent of success is showing up.", 'author': "Woody Allen"},
 ]
 
-ReactDOM.render(
-  <div className='quote'>{inspiration[randomNumber].quote}
-    <div className='author'>&emsp;&emsp; - <b>{inspiration[randomNumber].author}</b></div>
-  </div>,
-  document.getElementById('inspirationQuote')
-)
+let numOfInsp
+inspiration.forEach(function(item, index) { //Finds number of items in inspiration so you don't have to
+  numOfInsp = index                        //update the number every time you add a new quote
+})
+let randomNumber = Math.floor((Math.random() * (numOfInsp + 1))) //+1 because of the way Math.random works.
 
-ReactDOM.render(
-  <span>You have {randomNumber /*placeholder*/} tasks todo today.</span>,
-  document.getElementById('taskCount')
-)
+// ReactDOM.render(
+//   <div className='quote'>{inspiration[randomNumber].quote}
+//     <div className='author'>&emsp;&emsp; - <b>{inspiration[randomNumber].author}</b></div>
+//   </div>,
+//   document.getElementById('inspirationQuote')
+// )
+//
+// ReactDOM.render(
+//   <span>You have {randomNumber /*placeholder*/} tasks todo today.</span>,
+//   document.getElementById('taskCount')
+// )
 
 ReactDOM.render(<input className='searchBar' placeholder='Search for a to-do'/>, document.getElementById('searchBarContainer'))
 
-let today = new Date()
-let dd = today.getDate()
-let mm = today.getMonth()
-let yyyy = today.getFullYear()
-let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-let date = months[mm] + ' ' + dd + ', ' + yyyy
-ReactDOM.render(<span>TODAY: {date.toUpperCase()}</span>, document.getElementById('date'))
+$(document).on('click', '#search', function() {
+  $('.searchBar').toggleClass('searchBarOpen')
+  $('#searchIcon').toggle()
+  $('#xIcon').toggle()
+})
+//
+// let today = new Date()
+// let dd = today.getDate()
+// let mm = today.getMonth()
+// let yyyy = today.getFullYear()
+// let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+// let date = months[mm] + ' ' + dd + ', ' + yyyy
+// ReactDOM.render(<span>TODAY: {date.toUpperCase()}</span>, document.getElementById('date'))
 
 
 
