@@ -1,18 +1,18 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react'
+import ReactDOM from 'react-dom'
 import './animate.js'
-import './index.css';
+import './index.css'
 //import './script.js'
 import $ from 'jquery'
-import registerServiceWorker from './registerServiceWorker';
-registerServiceWorker();
+import registerServiceWorker from './registerServiceWorker'
+registerServiceWorker()
 
 let todoCategories = {
-personal: {categoryImg: '', unfinishedToDo: ['Some title','another title', 'great todo'], finishedTodo: ['I\'m done with this bullshit']},
-work: {categoryImg: '', categoryToDo: {title: 'Some title'}},
-fitness: {categoryImg: '', categoryToDo: {title: 'Some title'}},
-groceries: {categoryImg: '', categoryToDo: {title: 'Some title'}},
-miscellaneous: {categoryImg: '', categoryToDo: {title: 'Some title'}},
+personal: {categoryName: 'personal', categoryImg: '', unfinishedToDo: ['Some title','another title', 'great todo'], finishedTodo: ['I\'m done with this bullshit']},
+work: {categoryName: 'work', categoryImg: '', categoryToDo: {title: 'Some title'}},
+fitness: {categoryName: 'fitness', categoryImg: '', categoryToDo: {title: 'Some title'}},
+groceries: {categoryName: 'groceries', categoryImg: '', categoryToDo: {title: 'Some title'}},
+miscellaneous: {categoryName: 'miscellaneous', categoryImg: '', categoryToDo: {title: 'Some title'}},
 }
 
 console.log(todoCategories.personal)
@@ -96,10 +96,17 @@ ReactDOM.render(
     </div>
     <div className='gradient'></div>
     <div id='toDoBody'>
-      <div className='categoryAvatar'>
-        <svg version="1.1" className="briefcase" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" x="0px" y="0px" viewBox="0 0 24 24">
-          <path d="M24 22h-24v-15h24v15zm-15-20c-1.104 0-2 .896-2 2v2h2v-1.5c0-.276.224-.5.5-.5h5c.276 0 .5.224.5.5v1.5h2v-2c0-1.104-.896-2-2-2h-6z"/>
-        </svg>
+      <div className='todoBodyHeader'>
+        <div className='categoryAvatar'>
+          <svg version="1.1" className="briefcase" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" x="0px" y="0px" viewBox="0 0 24 24">
+            <path d="M24 22h-24v-15h24v15zm-15-20c-1.104 0-2 .896-2 2v2h2v-1.5c0-.276.224-.5.5-.5h5c.276 0 .5.224.5.5v1.5h2v-2c0-1.104-.896-2-2-2h-6z"/>
+          </svg>
+        </div>
+        <div className='addTodo'>
+          <svg version="1.1" className="addIcon" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" x="0px" y="0px" viewBox="0 0 24 24">
+            <path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/>
+          </svg>
+        </div>
       </div>
       <div className='toDoLists'>
         <div className='numOfTasks'>12 tasks</div>
@@ -117,7 +124,7 @@ ReactDOM.render(
                     <path d="M21 6.285l-11.16 12.733-6.84-6.018 1.319-1.49 5.341 4.686 9.865-11.196 1.475 1.285z"/>
                   </svg>
                 </div>
-                <div className='textContainer'>Meet Clients</div>
+                <div className='textContainer'>Meet Meet Meet Meet Meet Meet Meet Meet Meet Meet </div>
               </div>
               <div className='deleteItem'>
                 <svg version="1.1" className="deleteIcon" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" x="0px" y="0px" viewBox="0 0 415 409.7">
@@ -125,14 +132,14 @@ ReactDOM.render(
                 </svg>
               </div>
             </div>
-            <div className='todoItems'>
+            <div className='todoItems finishedItem'>
               <div className='textCheckContainer'>
                 <div className='checkMarkContainer'>
                   <svg version="1.1" className="checkMark" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" x="0px" y="0px" viewBox="0 0 24 24">
                     <path d="M21 6.285l-11.16 12.733-6.84-6.018 1.319-1.49 5.341 4.686 9.865-11.196 1.475 1.285z"/>
                   </svg>
                 </div>
-                <div className='textContainer'>Meet Clients</div>
+                <div className='textContainer'>Meeting at 17:00</div>
               </div>
               <div className='deleteItem'>
                 <svg version="1.1" className="deleteIcon" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" x="0px" y="0px" viewBox="0 0 415 409.7">
@@ -142,14 +149,32 @@ ReactDOM.render(
             </div>
           </div>
         </div>
-        <div className='finishedToDo'>
+        {/*<div className='finishedToDo'>
           <span className='todoTitle'>Finished todos</span>
-        </div>
+        </div>*/}
       </div>
     </div>
   </div>,
   document.getElementById('root')
 )
+
+$(document).on('click', '.addTodo', function() {
+  ReactDOM.render(
+    <div className='addTask'>
+      <div className='newTaskHeader'>New Task</div>
+      <div className='inputContainer'>
+        <div className='inputDescription'>Add a new task</div>
+        <input className='inputTodo' autoFocus/>
+      </div>
+    </div>,
+    document.getElementById('toDoBody')
+  )
+})
+
+$(document).on('click', '.textCheckContainer', function() {
+  let currentItem = this.parentNode
+  $(currentItem).toggleClass('finishedItem')
+})
 
 // ReactDOM.render(<input className='searchBar' placeholder='Search for a to-do'/>, document.getElementById('searchBarContainer'))
 

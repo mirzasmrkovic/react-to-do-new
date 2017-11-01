@@ -141,11 +141,22 @@ body {
   fill: #e58484;
 }
 
+.addIcon {
+  width: 16px;
+  height: 16px;
+  fill: white;
+}
+
   /**/
 
+.todoBodyHeader {
+  display: flex;
+  justify-content: space-between;
+}
+
 .categoryAvatar {
-  width: 18px;
-  height: 18px;
+  width: 22px;
+  height: 22px;
   padding: 6px;
   border: 1px solid rgba(51,51,51,0.3);
   border-radius: 50%;
@@ -309,6 +320,10 @@ body {
   justify-content: space-between;
 }
 
+.todoItems .checkMark{
+    display: none;
+}
+
 .textCheckContainer {
   display: flex;
   align-items: center;
@@ -334,6 +349,7 @@ body {
 }
 
 .textContainer {
+  max-width: 230px;
 }
 
 .deleteItem {
@@ -342,18 +358,87 @@ body {
 }
 
 .deleteItem:hover .deleteIcon {
-  fill: #d84545;
+  fill: #D84545;
 }
 
 .deleteItem:hover {
   cursor: pointer;
 }
 
+.textCheckContainer:hover .checkMarkContainer{
+  background-color: rgb(91,190,182);
+}
 
+.textCheckContainer:hover .checkMark{
+  display: block;
+}
 
+.finishedItem {
+  transition: background-color .5s ease;
+}
 
+.finishedItem .checkMarkContainer {
+  background-color: rgb(91,190,182);
+}
 
+.finishedItem .checkMark{
+  display: block;
+}
 
+.addTodo {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #5BADDC;
+  border-radius: 50%;
+  background-color: #5BADDC;
+  background: linear-gradient(to bottom left, #5BADDC, #809af3);
+  box-shadow: -2px 5px 5px 0px rgba(128,154,243,0.5);
+}
+
+.addTodo:hover .addIcon {
+  fill: #6ad0c8;
+}
+
+.addTodo:hover {
+  cursor: pointer;
+}
+
+.addTask {
+  display: flex;
+  flex-direction: column;
+}
+
+.newTaskHeader {
+  padding: 10px 0px;
+  display: flex;
+  margin-right: auto;
+  margin-left: auto;
+  font-size: 11pt;
+  color: #777;
+  font-weight: bold;
+}
+
+.inputContainer {
+  padding: 10px 0px;
+  display: flex;
+  flex-direction: column;
+}
+
+.inputDescription {
+  font-size: 10pt;
+  color: #999;
+}
+
+.inputTodo {
+  outline: none;
+  padding: 5px;
+  border: none;
+  border-left: 2px solid rgba(153,153,153,0.3);
+  margin-top: 10px;
+}
 
 
 
