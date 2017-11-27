@@ -33,14 +33,31 @@
         <div id="userGreet">Hello, Alex.</div>
         <div id="inspirationQuote"></div>
         <div id="taskCount"></div>
-        <div id="variousToDos">
-          <div id="date"></div>
-          <div id="toDoListContainer">
-            <div class="toDoLists" id="personal"></div>
-            <div class="toDoLists" id="work"></div>
-            <div class="toDoLists" id="fitness"></div>
-            <div class="toDoLists" id="groceries"></div>
-            <div class="toDoLists" id="miscellaneous"></div>
+      </div>
+      <div id="variousToDos">
+        <div id="date"></div>
+        <div id="toDoListContainerSmall">
+          <div class='slideArrows leftSlideArrow'>
+            <svg version="1.1" class="leftArrow" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" x="0px" y="0px" viewBox="0 0 24 24">
+              <path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z"/>
+            </svg>
+          </div>
+          <div class="selectedToDo">
+            <div class="toDoListsSmall" id="personal">
+              <div class='categoryAvatar'>
+                <svg version="1.1" class="briefcase" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" x="0px" y="0px" viewBox="0 0 24 24">
+                  <path d="M24 22h-24v-15h24v15zm-15-20c-1.104 0-2 .896-2 2v2h2v-1.5c0-.276.224-.5.5-.5h5c.276 0 .5.224.5.5v1.5h2v-2c0-1.104-.896-2-2-2h-6z"/>
+                </svg>
+              </div>
+              <div class='numOfTasks'>12 tasks</div>
+              <div class='categoryName'>Personal</div>
+              <div class='statusBar'><span class='progressBar'><span class='progress'></span></span><span class='percentage'>24%</span></div>
+            </div>
+          </div>
+          <div class='slideArrows rightSlideArrow'>
+            <svg version="1.1" class="rightArrow" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" x="0px" y="0px" viewBox="0 0 24 24">
+              <path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z"/>
+            </svg>
           </div>
         </div>
       </div>

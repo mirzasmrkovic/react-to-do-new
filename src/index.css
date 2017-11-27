@@ -116,7 +116,7 @@ body {
   fill: #5baddc;
 }
 
-.leftArrow {
+.backArrow {
   width: 18px;
   height: 18px;
   fill: rgb(111,114,123);
@@ -147,6 +147,19 @@ body {
   fill: white;
 }
 
+.leftArrow, .rightArrow{
+  width: 25px;
+  height: 25px;
+  fill: rgb(101,100,107);
+}
+
+.leftArrow {
+  transform: rotate(90deg);
+}
+
+.rightArrow {
+  transform: rotate(-90deg);
+}
   /**/
 
 .todoBodyHeader {
@@ -167,7 +180,7 @@ body {
   display: flex;
 }
 
-#returnBack:hover .leftArrow {
+#returnBack:hover .backArrow {
   fill: rgba(111,114,123,0.5);
 }
 
@@ -234,20 +247,75 @@ body {
 }
 
 #variousToDos {
-  margin-top: 40px;
+  background: linear-gradient(to right , #5b86dc, #5bafbe);
+  padding-bottom: 20px;
 }
 
 #date {
   color: white;
   font-weight: bolder;
   font-size: 8pt;
+  padding: 0px 50px;
+  margin-bottom: 20px;
+}
+
+.selectedToDo {
+  width: 100%;
+  margin: 0px 10px;
+}
+
+.selectedToDo:hover {
+  cursor: pointer;
+}
+
+.selectedToDo:hover .toDoListsSmall{
+  background-color: #8aeee5;
+}
+
+.slideArrows {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  background-color: rgba(91,190,182,0.5);
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.1);
+}
+
+.slideArrows:hover {
+  background-color: rgba(91,190,182,0.9);
+  cursor: pointer;
+}
+
+.slideArrows:hover .leftArrow, .slideArrows:hover .rightArrow{
+  fill: white;
+}
+
+.toDoListsSmall {
+  background-color: #fff;
+  color: #777;
+  padding: 20px;
+  box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.3);
+}
+
+.toDoListsSmall .categoryAvatar {
+  margin-bottom: 60px;
+}
+
+#toDoListContainerSmall {
+  display: flex;
+  justify-content: space-between;
 }
 
 #toDoListContainer {
-  display: flex;
-  justify-content: center;
-  margin-top: 10px;
+
 }
+
+.toDoLists {
+  margin: 20px 0px;
+  color: #777;
+  background-color: white;
+}
+
 
 .headerCategoryImg {
   padding: 5px;
@@ -255,11 +323,6 @@ body {
   height: 20px;
   border: 1px solid rgba(51,51,51,0.3);
   border-radius: 50%;
-}
-
-.toDoLists {
-  margin: 30px 0px 0px 0px;
-  color: #777;
 }
 
 .numOfTasks {
@@ -385,9 +448,8 @@ body {
   display: block;
 }
 
-.addTodo {
-  width: 34px;
-  height: 34px;
+.addTodo, .addButton{
+  padding: 9px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -398,12 +460,23 @@ body {
   box-shadow: -2px 5px 5px 0px rgba(128,154,243,0.5);
 }
 
-.addTodo:hover .addIcon {
+.addButton {
+  width: 100%;
+  padding: 7px;
+  margin-top: 10px;
+  border-radius: 0;
+}
+
+.addTodo:hover .addIcon, .addButton:hover .addIcon {
   fill: #6ad0c8;
 }
 
-.addTodo:hover {
+.addTodo:hover, .addButton:hover {
   cursor: pointer;
+}
+
+.addTodo:active, .addButton:active {
+  box-shadow: inset 0px 0px 5px 0px rgba(86,114,209,0.5);
 }
 
 .addTask {
@@ -439,8 +512,6 @@ body {
   border-left: 2px solid rgba(153,153,153,0.3);
   margin-top: 10px;
 }
-
-
 
 
 
