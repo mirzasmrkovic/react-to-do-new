@@ -259,16 +259,16 @@ body {
   margin-bottom: 20px;
 }
 
-.selectedToDo {
+#selectedToDo {
   width: 100%;
   margin: 0px 10px;
 }
 
-.selectedToDo:hover {
+#selectedToDo:hover {
   cursor: pointer;
 }
 
-.selectedToDo:hover .toDoListsSmall{
+#selectedToDo:hover .toDoListsSmall{
   background-color: #8aeee5;
 }
 
