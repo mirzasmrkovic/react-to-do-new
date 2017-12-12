@@ -29,18 +29,18 @@ $(document).on('click', '.slideArrows', function(e) {
     let item = document.getElementById('selectedToDo').firstChild
     anime({
       targets: item,
-      translateX: function(el) {
-        console.log(el)
+      translateX: function() {
+        let num = 200
         if (direction === 'left') {
-          return -200
+          return num
         }
         else if (direction === 'right') {
-          return 200
+          return num * (-1)
         }
       },
       opacity: 0,
       elasticity: 0,
-      duration: 1000,
+      duration: 700,
     })
     //setTimeout(function(){$(item).remove()}, 450)
   }
