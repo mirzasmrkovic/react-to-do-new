@@ -2,17 +2,16 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import './animate.js'
 import './index.css'
-//import './script.js'
 import $ from 'jquery'
 import registerServiceWorker from './registerServiceWorker'
 registerServiceWorker()
 
 let todoCategories = [
-  {categoryName: 'Personal',  unfinishedTodo: ['Some title', 'another title', 'another title', 'another title', 'great todo'], finishedTodo: ['I\'m done with this bullshit', 'I\'m done with this bullshit', 'I\'m done with this bullshit']},
+  {categoryName: 'Personal',  unfinishedTodo: ['another title', 'another title', 'another title', 'great todo'], finishedTodo: ['I\'m done with this bullshit', 'I\'m done with this bullshit', 'I\'m done with this bullshit']},
   {categoryName: 'Work', unfinishedTodo: ['Some title','another title', 'great todo'], finishedTodo: ['I\'m done with this bullshit']},
-  {categoryName: 'Fitness', unfinishedTodo: ['Some title','another title', 'great todo'], finishedTodo: ['I\'m done with this bullshit']},
-  {categoryName: 'Groceries', unfinishedTodo: ['Some title','another title', 'great todo'], finishedTodo: ['I\'m done with this bullshit']},
-  {categoryName: 'Miscellaneous', unfinishedTodo: ['Some title','another title', 'great todo'], finishedTodo: ['I\'m done with this bullshit']},
+  {categoryName: 'Fitness', unfinishedTodo: ['Some title', 'Some title', 'another title', 'great todo'], finishedTodo: ['I\'m done with this bullshit']},
+  {categoryName: 'Groceries', unfinishedTodo: ['Some title','another title', 'Some title','another title', 'great todo'], finishedTodo: ['I\'m done with this bullshit']},
+  {categoryName: 'Miscellaneous', unfinishedTodo: ['Some title','another title', 'great todo', 'great todo', 'great todo'], finishedTodo: ['I\'m done with this bullshit', 'Some title', 'Some title']},
 ]
 
 let todoAvatars = [
@@ -25,6 +24,13 @@ let todoAvatars = [
 
 todoCategories.forEach(function(item, index) {
 })
+
+let today = new Date()
+let dd = today.getDate()
+let mm = today.getMonth()
+let yyyy = today.getFullYear()
+let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+let date = months[mm] + ' ' + dd + ', ' + yyyy
 
 ReactDOM.render(
   <div>
@@ -44,7 +50,7 @@ ReactDOM.render(
         </svg>
       </div>
     </div>
-    <div id="searchBarContainer"></div>
+    <div id="searchBarContainer"><input className='searchBar' placeholder='Search for a to-do'/></div>
     <div className="gradient"></div>
     <div id="toDoContainer">
       <img src="alex.jpg" id="userAvatarImg"/>
@@ -53,7 +59,9 @@ ReactDOM.render(
       <div id="taskCount"></div>
     </div>
     <div id="variousToDos">
-      <div id="date"></div>
+      <div id="date">
+          <span>TODAY: {date.toUpperCase()}</span>
+      </div>
       <div id="toDoListContainerSmall">
         <div id="leftSlideArrow" className='slideArrows'>
           <svg version="1.1" className="leftArrow" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" x="0px" y="0px" viewBox="0 0 24 24">
@@ -75,19 +83,13 @@ ReactDOM.render(
 
 let slideNum = 0
 
-/*function percentageCalc() {
-  let notFinished = todoCategories[slideNum].unfinishedTodo.length
-  let finished = todoCategories[slideNum].finishedTodo.length
-
-  let percentage = finished/(notFinished+finished)*100
-}*/
-//percentageCalc()
-
 function renderSlide() {
   let notFinished = todoCategories[slideNum].unfinishedTodo.length
   let finished = todoCategories[slideNum].finishedTodo.length
   let sum = notFinished + finished
-  let calculatedPercentage = finished/sum*100
+  let calculatedPercentage = (finished/sum*100).toFixed(1)
+
+  $('.toDoListsSmall').remove()
 
   let slide = document.createElement('div')
   slide.classList.add('toDoListsSmall')
@@ -130,25 +132,21 @@ function renderSlide() {
   $(progressBar).appendTo(statusBar)
   $(progress).appendTo(progressBar)
   $(percentage).appendTo(statusBar)
-  //console.log(todoCategories[slideNum])
 }
 renderSlide()
 
-function test() {
-
-}
-
-$(document).on('click', '#leftSlideArrow', function() {
+$(document).on('click', '.slideArrows', function(e) {
+  if (this.id === 'leftSlideArrow') {
     slideNum -= 1
     if (slideNum < 0) {
        slideNum = 4
     }
-    renderSlide()
-})
-$(document).on('click', '#rightSlideArrow', function() {
-  slideNum += 1
-  if (slideNum > 4) {
-     slideNum = 0
+  }
+  else if (this.id === 'rightSlideArrow') {
+    slideNum += 1
+    if (slideNum > 4) {
+       slideNum = 0
+    }
   }
   renderSlide()
 })
@@ -201,134 +199,123 @@ let something = function() {
   }
 }
 
-/*ReactDOM.render(
-  <div id='work'>
-    <div id="header">
-      <div id="returnBack">
-        <svg version="1.1" className="backArrow" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" x="0px" y="0px" viewBox="0 0 24 24">
-          <path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"/>
-        </svg>
-      </div>
-      <div id="title">{something()}</div>
-      <div className='todoMenu'>
-        <svg version="1.1" className="dottedMenu" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" x="0px" y="0px" viewBox="0 0 24 24">
-          <path d="M12 18c1.657 0 3 1.343 3 3s-1.343 3-3 3-3-1.343-3-3 1.343-3 3-3zm0-9c1.657 0 3 1.343 3 3s-1.343 3-3 3-3-1.343-3-3 1.343-3 3-3zm0-9c1.657 0 3 1.343 3 3s-1.343 3-3 3-3-1.343-3-3 1.343-3 3-3z"/>
-        </svg>
-      </div>
-    </div>
-    <div className='gradient'></div>
-    <div id='toDoBody'>
-      <div className='todoBodyHeader'>
-        <div className='categoryAvatar'>
-          <svg version="1.1" className="briefcase" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" x="0px" y="0px" viewBox="0 0 24 24">
-            <path d="M24 22h-24v-15h24v15zm-15-20c-1.104 0-2 .896-2 2v2h2v-1.5c0-.276.224-.5.5-.5h5c.276 0 .5.224.5.5v1.5h2v-2c0-1.104-.896-2-2-2h-6z"/>
+$(document).on('click', '.toDoListsSmall', function () {
+  ReactDOM.render(
+    <div id='work'>
+      <div id="header">
+        <div id="returnBack">
+          <svg version="1.1" className="backArrow" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" x="0px" y="0px" viewBox="0 0 24 24">
+            <path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"/>
           </svg>
         </div>
-        <div className='addTodo'>
-          <svg version="1.1" className="addIcon" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" x="0px" y="0px" viewBox="0 0 24 24">
-            <path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/>
+        <div id="title">{something()}</div>
+        <div className='todoMenu'>
+          <svg version="1.1" className="dottedMenu" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" x="0px" y="0px" viewBox="0 0 24 24">
+            <path d="M12 18c1.657 0 3 1.343 3 3s-1.343 3-3 3-3-1.343-3-3 1.343-3 3-3zm0-9c1.657 0 3 1.343 3 3s-1.343 3-3 3-3-1.343-3-3 1.343-3 3-3zm0-9c1.657 0 3 1.343 3 3s-1.343 3-3 3-3-1.343-3-3 1.343-3 3-3z"/>
           </svg>
         </div>
       </div>
-      <div className='toDoLists'>
-        <div className='numOfTasks'>12 tasks</div>
-        <div className='categoryName'>Work</div>
-        <div className='statusBar'><span className='progressBar'><span className='progress'></span></span><span className='percentage'>24%</span></div>
-      </div>
-      <div className='listOfTodos'>
-        <div className='unfinishedTodo'>
-          <span className='todoTitle'>Todos to be finished</span>
-          <div className='itemContainer'>
-            <div className='todoItems'>
-              <div className='textCheckContainer'>
-                <div className='checkMarkContainer'>
-                  <svg version="1.1" className="checkMark" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" x="0px" y="0px" viewBox="0 0 24 24">
-                    <path d="M21 6.285l-11.16 12.733-6.84-6.018 1.319-1.49 5.341 4.686 9.865-11.196 1.475 1.285z"/>
+      <div className='gradient'></div>
+      <div id='toDoBody'>
+        <div className='todoBodyHeader'>
+          <div className='categoryAvatar'>
+            <svg version="1.1" className="avatarColor" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" x="0px" y="0px" viewBox="0 0 24 24">
+              <path d="M24 22h-24v-15h24v15zm-15-20c-1.104 0-2 .896-2 2v2h2v-1.5c0-.276.224-.5.5-.5h5c.276 0 .5.224.5.5v1.5h2v-2c0-1.104-.896-2-2-2h-6z"/>
+            </svg>
+          </div>
+          <div className='addTodo'>
+            <svg version="1.1" className="addIcon" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" x="0px" y="0px" viewBox="0 0 24 24">
+              <path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/>
+            </svg>
+          </div>
+        </div>
+        <div className='toDoLists'>
+          <div className='numOfTasks'>12 tasks</div>
+          <div className='categoryName'>Work</div>
+          <div className='statusBar'><span className='progressBar'><span className='progress'></span></span><span className='percentage'>24%</span></div>
+        </div>
+        <div className='listOfTodos'>
+          <div className='unfinishedTodo'>
+            <span className='todoTitle'>Todos to be finished</span>
+            <div className='itemContainer'>
+              <div className='todoItems'>
+                <div className='textCheckContainer'>
+                  <div className='checkMarkContainer'>
+                    <svg version="1.1" className="checkMark" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" x="0px" y="0px" viewBox="0 0 24 24">
+                      <path d="M21 6.285l-11.16 12.733-6.84-6.018 1.319-1.49 5.341 4.686 9.865-11.196 1.475 1.285z"/>
+                    </svg>
+                  </div>
+                  <div className='textContainer'>Meet Meet Meet Meet Meet Meet Meet Meet Meet Meet </div>
+                </div>
+                <div className='deleteItem'>
+                  <svg version="1.1" className="deleteIcon" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" x="0px" y="0px" viewBox="0 0 415 409.7">
+                    <path d="M224.2,204.9L411.3,20.2c2.5-2.5,4-5.9,4-9.3c0-3-1.1-5.7-3.2-7.7c-2-2-4.8-3.1-7.8-3.1c-3.4,0-6.9,1.5-9.4,4L207.8,188.7L20.8,4c-2.5-2.5-6-4-9.4-4c-3,0-5.8,1.1-7.8,3.1c-2,2-3.2,4.7-3.2,7.7c0,3.4,1.5,6.7,4,9.3l187.1,184.7L4.4,389.5c-2.5,2.4-3.9,5.5-4,8.7c-0.1,3.2,1,6.1,3.1,8.3c2,2,4.8,3.1,7.8,3.1c3.4,0,6.9-1.4,9.4-4L207.8,221l187.1,184.7c4.8,4.7,12.9,5.1,17.2,0.8c4.5-4.5,4.1-12.1-0.8-17L224.2,204.9z"/>
                   </svg>
                 </div>
-                <div className='textContainer'>Meet Meet Meet Meet Meet Meet Meet Meet Meet Meet </div>
               </div>
-              <div className='deleteItem'>
-                <svg version="1.1" className="deleteIcon" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" x="0px" y="0px" viewBox="0 0 415 409.7">
-                  <path d="M224.2,204.9L411.3,20.2c2.5-2.5,4-5.9,4-9.3c0-3-1.1-5.7-3.2-7.7c-2-2-4.8-3.1-7.8-3.1c-3.4,0-6.9,1.5-9.4,4L207.8,188.7L20.8,4c-2.5-2.5-6-4-9.4-4c-3,0-5.8,1.1-7.8,3.1c-2,2-3.2,4.7-3.2,7.7c0,3.4,1.5,6.7,4,9.3l187.1,184.7L4.4,389.5c-2.5,2.4-3.9,5.5-4,8.7c-0.1,3.2,1,6.1,3.1,8.3c2,2,4.8,3.1,7.8,3.1c3.4,0,6.9-1.4,9.4-4L207.8,221l187.1,184.7c4.8,4.7,12.9,5.1,17.2,0.8c4.5-4.5,4.1-12.1-0.8-17L224.2,204.9z"/>
-                </svg>
-              </div>
-            </div>
-            <div className='todoItems finishedItem'>
-              <div className='textCheckContainer'>
-                <div className='checkMarkContainer'>
-                  <svg version="1.1" className="checkMark" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" x="0px" y="0px" viewBox="0 0 24 24">
-                    <path d="M21 6.285l-11.16 12.733-6.84-6.018 1.319-1.49 5.341 4.686 9.865-11.196 1.475 1.285z"/>
+              <div className='todoItems finishedItem'>
+                <div className='textCheckContainer'>
+                  <div className='checkMarkContainer'>
+                    <svg version="1.1" className="checkMark" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" x="0px" y="0px" viewBox="0 0 24 24">
+                      <path d="M21 6.285l-11.16 12.733-6.84-6.018 1.319-1.49 5.341 4.686 9.865-11.196 1.475 1.285z"/>
+                    </svg>
+                  </div>
+                  <div className='textContainer'>Meeting at 17:00</div>
+                </div>
+                <div className='deleteItem'>
+                  <svg version="1.1" className="deleteIcon" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" x="0px" y="0px" viewBox="0 0 415 409.7">
+                    <path d="M224.2,204.9L411.3,20.2c2.5-2.5,4-5.9,4-9.3c0-3-1.1-5.7-3.2-7.7c-2-2-4.8-3.1-7.8-3.1c-3.4,0-6.9,1.5-9.4,4L207.8,188.7L20.8,4c-2.5-2.5-6-4-9.4-4c-3,0-5.8,1.1-7.8,3.1c-2,2-3.2,4.7-3.2,7.7c0,3.4,1.5,6.7,4,9.3l187.1,184.7L4.4,389.5c-2.5,2.4-3.9,5.5-4,8.7c-0.1,3.2,1,6.1,3.1,8.3c2,2,4.8,3.1,7.8,3.1c3.4,0,6.9-1.4,9.4-4L207.8,221l187.1,184.7c4.8,4.7,12.9,5.1,17.2,0.8c4.5-4.5,4.1-12.1-0.8-17L224.2,204.9z"/>
                   </svg>
                 </div>
-                <div className='textContainer'>Meeting at 17:00</div>
-              </div>
-              <div className='deleteItem'>
-                <svg version="1.1" className="deleteIcon" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" x="0px" y="0px" viewBox="0 0 415 409.7">
-                  <path d="M224.2,204.9L411.3,20.2c2.5-2.5,4-5.9,4-9.3c0-3-1.1-5.7-3.2-7.7c-2-2-4.8-3.1-7.8-3.1c-3.4,0-6.9,1.5-9.4,4L207.8,188.7L20.8,4c-2.5-2.5-6-4-9.4-4c-3,0-5.8,1.1-7.8,3.1c-2,2-3.2,4.7-3.2,7.7c0,3.4,1.5,6.7,4,9.3l187.1,184.7L4.4,389.5c-2.5,2.4-3.9,5.5-4,8.7c-0.1,3.2,1,6.1,3.1,8.3c2,2,4.8,3.1,7.8,3.1c3.4,0,6.9-1.4,9.4-4L207.8,221l187.1,184.7c4.8,4.7,12.9,5.1,17.2,0.8c4.5-4.5,4.1-12.1-0.8-17L224.2,204.9z"/>
-                </svg>
               </div>
             </div>
           </div>
-        </div>
-        <div className='finishedTodo'>
-          <span className='todoTitle'>Finished todos</span>
-        </div>
-      </div>
-    </div>
-  </div>,
-  document.getElementById('root')
-)*/
-
-$(document).on('click', '#returnBack', function() {
-
-})
-
-$(document).on('click', '.textCheckContainer', function() {
-  let currentItem = this.parentNode
-  $(currentItem).toggleClass('finishedItem')
-})
-
-$(document).on('click', '.addTodo', function() {
-  ReactDOM.render(
-    <div className='addTask'>
-      <div className='newTaskHeader'>New Task</div>
-      <div className='inputContainer'>
-        <div className='inputDescription'>Add a new task</div>
-        <input className='inputTodo' type='text' autoFocus/>
-        <div className='addButton'>
-          <svg version="1.1" className="addIcon" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" x="0px" y="0px" viewBox="0 0 24 24">
-            <path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/>
-          </svg>
+          <div className='finishedTodo'>
+            <span className='todoTitle'>Finished todos</span>
+          </div>
         </div>
       </div>
     </div>,
-    document.getElementById('toDoBody')
+    document.getElementById('root')
   )
+
+  $(document).on('click', '#returnBack', function() {
+
+  })
+
+  $(document).on('click', '.textCheckContainer', function() {
+    let currentItem = this.parentNode
+    $(currentItem).toggleClass('finishedItem')
+  })
+
+  $(document).on('click', '.addTodo', function() {
+    ReactDOM.render(
+      <div className='addTask'>
+        <div className='newTaskHeader'>New Task</div>
+        <div className='inputContainer'>
+          <div className='inputDescription'>Add a new task</div>
+          <input className='inputTodo' type='text' autoFocus/>
+          <div className='addButton'>
+            <svg version="1.1" className="addIcon" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" x="0px" y="0px" viewBox="0 0 24 24">
+              <path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/>
+            </svg>
+          </div>
+        </div>
+      </div>,
+      document.getElementById('toDoBody')
+    )
+  })
 })
 
 $(document).on('click', '.addButton', function() {
 
 })
 
-//ReactDOM.render(<input className='searchBar' placeholder='Search for a to-do'/>, document.getElementById('searchBarContainer'))
-
 $(document).on('click', '#search', function() {
   $('.searchBar').toggleClass('searchBarOpen')
   $('.searchIcon').toggle()
   $('.xIcon').toggle()
 })
-
-let today = new Date()
-let dd = today.getDate()
-let mm = today.getMonth()
-let yyyy = today.getFullYear()
-let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-let date = months[mm] + ' ' + dd + ', ' + yyyy
-ReactDOM.render(<span>TODAY: {date.toUpperCase()}</span>, document.getElementById('date'))
-
-
-
 
 
 
