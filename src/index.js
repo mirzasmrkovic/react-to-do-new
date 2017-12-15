@@ -32,6 +32,24 @@ let yyyy = today.getFullYear()
 let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 let date = months[mm] + ' ' + dd + ', ' + yyyy
 
+let slideNum = 0
+
+function RenderSlide(props) {
+  return <div className="toDoListsSmall">
+    <div className="categoryAvatar">
+      <svg className="avatarColor">
+        <path d={props.svg}></path>
+      </svg>
+    </div>
+    <div className="numOfTasks">7 tasks</div>
+    <div className="categoryName">{props.catname}</div>
+    <div className="statusBar">
+      <span className="progressBar"><span className="progress"></span></span>
+      <span className="percentage">42.9%</span>
+    </div>
+  </div>
+}
+
 ReactDOM.render(
   <div>
     <div id="header">
@@ -69,6 +87,7 @@ ReactDOM.render(
           </svg>
         </div>
         <div id="selectedToDo">
+          <RenderSlide svg={todoAvatars[slideNum].categoryImg} catname={todoCategories[slideNum.categoryName]} />
         </div>
         <div id="rightSlideArrow" className='slideArrows'>
           <svg version="1.1" className="rightArrow" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" x="0px" y="0px" viewBox="0 0 24 24">
@@ -81,61 +100,81 @@ ReactDOM.render(
   document.getElementById('root')
 )
 
-let slideNum = 0
+// function progressBar(props) {
+//   let notFinished = todoCategories[slideNum].unfinishedTodo.length
+//   let finished = todoCategories[slideNum].finishedTodo.length
+//   let sum = notFinished + finished
+//   let calculatedPercentage = (finished/sum*100).toFixed(1)
+//
+//   return <div class="statusBar">
+//     <span class="progressBar">
+//       <span class="progress" style="width: 42.9%;"></span>
+//     </span>
+//     <span class="percentage">42.9%</span>
+//   </div>
+// }
 
-function renderSlide() {
-  let notFinished = todoCategories[slideNum].unfinishedTodo.length
-  let finished = todoCategories[slideNum].finishedTodo.length
-  let sum = notFinished + finished
-  let calculatedPercentage = (finished/sum*100).toFixed(1)
+// function progressBaar(anchor) {
+//   let notFinished = todoCategories[slideNum].unfinishedTodo.length
+//   let finished = todoCategories[slideNum].finishedTodo.length
+//   let sum = notFinished + finished
+//   let calculatedPercentage = (finished/sum*100).toFixed(1)
+//
+//   let statusBar = document.createElement('div')
+//   statusBar.classList.add('statusBar')
+//   let progressBar = document.createElement('span')
+//   progressBar.classList.add('progressBar')
+//   let progress = document.createElement('span')
+//   progress.classList.add('progress')
+//   $(progress).css({"width": calculatedPercentage + '%'})
+//   let percentage = document.createElement('span')
+//   percentage.classList.add('percentage')
+//   percentage.innerHTML = calculatedPercentage + '%'
+//
+//   $(statusBar).appendTo(anchor)
+//   $(progressBar).appendTo(statusBar)
+//   $(progress).appendTo(progressBar)
+//   $(percentage).appendTo(statusBar)
+// }
 
-  $('.toDoListsSmall').remove()
+// function renderSlidee() {
+//   $('.toDoListsSmall').remove()
+//
+//   let slide = document.createElement('div')
+//   slide.classList.add('toDoListsSmall')
+//
+//   let slideAvatar = document.createElement('div')
+//   slideAvatar.classList.add('categoryAvatar')
+//
+//   let svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
+//   svg.classList.add('avatarColor')
+//
+//   let path = document.createElementNS("http://www.w3.org/2000/svg", "path")
+//   path.setAttribute('d', todoAvatars[slideNum].categoryImg)
+//
+//   let notFinished = todoCategories[slideNum].unfinishedTodo.length
+//   let finished = todoCategories[slideNum].finishedTodo.length
+//   let sum = notFinished + finished
+//
+//   let numOfTasks = document.createElement('div')
+//   numOfTasks.classList.add('numOfTasks')
+//   numOfTasks.innerHTML = sum + ' tasks'
+//
+//   let title = document.createElement('div')
+//   title.classList.add('categoryName')
+//   title.innerHTML = todoCategories[slideNum].categoryName
+//
+//   $(slide).appendTo('#selectedToDo')
+//   $(slideAvatar).appendTo(slide)
+//   $(svg).appendTo(slideAvatar)
+//   $(svg).append(path)
+//   $(numOfTasks).appendTo(slide)
+//   $(title).appendTo(slide)
+//   progressBaar(slide)
+// }
+// renderSlide()
 
-  let slide = document.createElement('div')
-  slide.classList.add('toDoListsSmall')
-
-  let slideAvatar = document.createElement('div')
-  slideAvatar.classList.add('categoryAvatar')
-
-  let svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
-  svg.classList.add('avatarColor')
-
-  let path = document.createElementNS("http://www.w3.org/2000/svg", "path")
-  path.setAttribute('d', todoAvatars[slideNum].categoryImg)
-
-  let numOfTasks = document.createElement('div')
-  numOfTasks.classList.add('numOfTasks')
-  numOfTasks.innerHTML = sum + ' tasks'
-
-  let title = document.createElement('div')
-  title.classList.add('categoryName')
-  title.innerHTML = todoCategories[slideNum].categoryName
-
-  let statusBar = document.createElement('div')
-  statusBar.classList.add('statusBar')
-  let progressBar = document.createElement('span')
-  progressBar.classList.add('progressBar')
-  let progress = document.createElement('span')
-  progress.classList.add('progress')
-  $(progress).css({"width": calculatedPercentage + '%'})
-  let percentage = document.createElement('span')
-  percentage.classList.add('percentage')
-  percentage.innerHTML = calculatedPercentage + '%'
-
-  $(slide).appendTo('#selectedToDo')
-  $(slideAvatar).appendTo(slide)
-  $(svg).appendTo(slideAvatar)
-  $(svg).append(path)
-  $(numOfTasks).appendTo(slide)
-  $(title).appendTo(slide)
-  $(statusBar).appendTo(slide)
-  $(progressBar).appendTo(statusBar)
-  $(progress).appendTo(progressBar)
-  $(percentage).appendTo(statusBar)
-}
-renderSlide()
-
-$(document).on('click', '.slideArrows', function(e) {
+$(document).unbind().on('click', '.slideArrows', function(e) {
   if (this.id === 'leftSlideArrow') {
     slideNum -= 1
     if (slideNum < 0) {
@@ -148,7 +187,7 @@ $(document).on('click', '.slideArrows', function(e) {
        slideNum = 0
     }
   }
-  renderSlide()
+  //renderSlide()
 })
 
 let inspiration = [
@@ -199,9 +238,14 @@ let something = function() {
   }
 }
 
+function Welcome(props) {
+  return <h1>Hello, {props.name}</h1>;
+}
+
 $(document).on('click', '.toDoListsSmall', function () {
   ReactDOM.render(
-    <div id='work'>
+    <div>
+    <Welcome name={todoCategories[0].categoryName} />
       <div id="header">
         <div id="returnBack">
           <svg version="1.1" className="backArrow" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" x="0px" y="0px" viewBox="0 0 24 24">
@@ -278,34 +322,35 @@ $(document).on('click', '.toDoListsSmall', function () {
     </div>,
     document.getElementById('root')
   )
-
-  $(document).on('click', '#returnBack', function() {
-
-  })
-
-  $(document).on('click', '.textCheckContainer', function() {
-    let currentItem = this.parentNode
-    $(currentItem).toggleClass('finishedItem')
-  })
-
-  $(document).on('click', '.addTodo', function() {
-    ReactDOM.render(
-      <div className='addTask'>
-        <div className='newTaskHeader'>New Task</div>
-        <div className='inputContainer'>
-          <div className='inputDescription'>Add a new task</div>
-          <input className='inputTodo' type='text' autoFocus/>
-          <div className='addButton'>
-            <svg version="1.1" className="addIcon" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" x="0px" y="0px" viewBox="0 0 24 24">
-              <path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/>
-            </svg>
-          </div>
-        </div>
-      </div>,
-      document.getElementById('toDoBody')
-    )
-  })
 })
+
+$(document).on('click', '#returnBack', function() {
+
+})
+
+$(document).on('click', '.textCheckContainer', function() {
+  let currentItem = this.parentNode
+  $(currentItem).toggleClass('finishedItem')
+})
+
+$(document).on('click', '.addTodo', function() {
+  ReactDOM.render(
+    <div className='addTask'>
+      <div className='newTaskHeader'>New Task</div>
+      <div className='inputContainer'>
+        <div className='inputDescription'>Add a new task</div>
+        <input className='inputTodo' type='text' autoFocus/>
+        <div className='addButton'>
+          <svg version="1.1" className="addIcon" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" x="0px" y="0px" viewBox="0 0 24 24">
+            <path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/>
+          </svg>
+        </div>
+      </div>
+    </div>,
+    document.getElementById('toDoBody')
+  )
+})
+
 
 $(document).on('click', '.addButton', function() {
 

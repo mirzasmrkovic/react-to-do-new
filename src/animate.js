@@ -1,7 +1,7 @@
 import anime from 'animejs'
 import $ from 'jquery'
 
-$('#root').on('click', '.deleteItem', function(e) {
+$(document).on('click', '.deleteItem', function(e) {
   let item = e.currentTarget.parentNode
   anime({
     targets: item,
