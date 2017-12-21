@@ -3,7 +3,7 @@ import RenderProgress from './RenderProgress'
 import CurrentCat from './CurrentCat'
 
 export default function TodoBody(props) {
-
+  console.log('aa')
   return (
     <div id='toDoBody'>
       <div className='todoBodyHeader'>

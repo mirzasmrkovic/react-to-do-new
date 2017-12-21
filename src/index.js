@@ -96,8 +96,40 @@ function searchBar(props) {
 //   $('.xIcon').toggle()
 // })
 
+class QuoteMaker extends React.Component {
+  render() {
+    return (
+      <CurrentCat catName={todoCategories[slideNum].categoryName}/>
+    )
+  }
+  componentWillUpdate(nextProps, nextState) {}
+}
+
+function AddTask(props) {
+
+}
+
+// $(document).on('click', '.addTodo', function() {
+//   ReactDOM.render(
+//     <div className='addTask'>
+//       <div className='newTaskHeader'>New Task</div>
+//       <div className='inputContainer'>
+//         <div className='inputDescription'>Add a new task</div>
+//         <input className='inputTodo' type='text' autoFocus/>
+//         <div className='addButton'>
+//           <svg version="1.1" className="addIcon" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" x="0px" y="0px" viewBox="0 0 24 24">
+//             <path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/>
+//           </svg>
+//         </div>
+//       </div>
+//     </div>,
+//     document.getElementById('toDoBody')
+//   )
+// })
+
 ReactDOM.render(
   <div>
+  <QuoteMaker/>
     <div id="header">
       <div id="menu">
         <div className="rectangle"></div>
