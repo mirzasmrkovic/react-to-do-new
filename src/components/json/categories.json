@@ -1,0 +1,29 @@
+{
+  "categories": {
+    "0": {
+      "category": "Personal",
+       "complete": ["Some title", "another title", "Some title", "another title", "great todo"],
+       "incomplete": ["araihjri title", "arjti title", "Some title", "another title", "great todo"]
+     },
+    "0": {
+      "category": "Work",
+       "complete": ["Some title", "another title", "Some title", "another title", "great todo"],
+       "incomplete": ["araihjri title", "arjti title", "Some title", "another title", "great todo"]
+     },
+    "0": {
+      "category": "Fitness",
+       "complete": ["Some title", "another title", "Some title", "another title", "great todo"],
+       "incomplete": ["araihjri title", "arjti title", "Some title", "another title", "great todo"]
+     },
+    "0": {
+      "category": "Groceries",
+       "complete": ["Some title", "another title", "Some title", "another title", "great todo"],
+       "incomplete": ["araihjri title", "arjti title", "Some title", "another title", "great todo"]
+     },
+    "0": {
+      "category": "Miscellaneous",
+       "complete": ["Some title", "another title", "Some title", "another title", "great todo"],
+       "incomplete": ["araihjri title", "arjti title", "Some title", "another title", "great todo"]
+     }
+  }
+}
