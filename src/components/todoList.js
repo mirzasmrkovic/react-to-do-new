@@ -5,22 +5,104 @@ import TodoBody from './TodoBody'
 
 import {categories} from './json/categories.json'
 
-let todoCategories = [
-  {categoryName: 'Personal',  unfinishedTodo: ['another title', 'another title', 'another title', 'great todo'], finishedTodo: ['I\'m done with this bullshit', 'I\'m done with this bullshit', 'I\'m done with this bullshit']},
-  {categoryName: 'Work', unfinishedTodo: ['Some title','another title', 'great todo'], finishedTodo: ['I\'m done with this bullshit']},
-  {categoryName: 'Fitness', unfinishedTodo: ['Some title', 'Some title', 'another title', 'great todo'], finishedTodo: ['I\'m done with this bullshit']},
-  {categoryName: 'Groceries', unfinishedTodo: ['Some title','another title', 'Some title','another title', 'great todo'], finishedTodo: ['I\'m done with this bullshit']},
-  {categoryName: 'Miscellaneous', unfinishedTodo: ['Some title','another title', 'great todo', 'great todo', 'great todo'], finishedTodo: ['I\'m done with this bullshit', 'Some title', 'Some title']},
-]
-
-let tasks = 0
-todoCategories.forEach(function(e,a,b) {tasks += e.unfinishedTodo.length})
-
-function TaskNumber(props) {
-  return (
-    <div id="taskCount">You have {props.tasks} tasks todo today.</div>
-  )
+class TaskNumber extends Component {
+  render(){
+    return(
+      <div id="taskCount">You have {this.props.tasks} tasks todo today.</div>
+    )
+  }
 }
+
+class TodoList extends Component {
+  state = {
+    slideNum: 0,
+    categories: categories,
+  }
+
+  changeSlideLeft = () => {
+    if (this.state.slideNum === 0) {
+      this.setState({
+        slideNum: (Object.keys(this.state.categories).length)-1,
+      })
+    }
+    else {
+      this.setState({
+        slideNum: (this.state.slideNum - 1),
+      })
+    }
+  }
+
+  changeSlideRight = () => {
+    if (this.state.slideNum === (Object.keys(this.state.categories).length)-1) {
+      this.setState({
+        slideNum: 0,
+      })
+    }
+    else {
+      this.setState({
+        slideNum: (this.state.slideNum + 1),
+      })
+    }
+  }
+
+  render () {
+    let notFinished = this.state.categories[this.state.slideNum].incompleteTodo.length
+    let finished = this.state.categories[this.state.slideNum].completeTodo.length
+    let calculatedPercentage = (finished/(notFinished + finished)*100).toFixed(1)
+
+    return (
+      <div>
+        <div id="header">
+          <div id="menu">
+            <div className="rectangle"></div>
+            <div className="rectangle"></div>
+            <div className="rectangle"></div>
+          </div>
+          <div id="title">TODO</div>
+          <div id="search">
+            <svg version="1.1" className="searchIcon" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 384 381"  xmlSpace="preserve">
+              <path d="M385,360.7L271.7,247.3c20.8-26,33.3-59.1,33.3-95.1C305,68.1,236.9,0,153,0C69,0,1,68.2,1,152.2s68.1,152.2,152,152.2c36.2,0,69.4-12.7,95.5-33.8L361.7,384L385,360.7z M56.8,248.6C31.1,222.9,17,188.7,17,152.3S31.2,81.7,56.8,56s59.9-40,96.2-40s70.5,14.2,96.2,39.9s39.8,59.9,39.8,96.3s-14.2,70.6-39.8,96.3c-25.7,25.7-59.9,39.9-96.2,39.9C116.7,288.5,82.5,274.3,56.8,248.6z"/>
+            </svg>
+            <svg version="1.1" className="xIcon" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 415 409.7"  xmlSpace="preserve">
+              <path d="M224.2,204.9L411.3,20.2c2.5-2.5,4-5.9,4-9.3c0-3-1.1-5.7-3.2-7.7c-2-2-4.8-3.1-7.8-3.1c-3.4,0-6.9,1.5-9.4,4L207.8,188.7L20.8,4c-2.5-2.5-6-4-9.4-4c-3,0-5.8,1.1-7.8,3.1c-2,2-3.2,4.7-3.2,7.7c0,3.4,1.5,6.7,4,9.3l187.1,184.7L4.4,389.5c-2.5,2.4-3.9,5.5-4,8.7c-0.1,3.2,1,6.1,3.1,8.3c2,2,4.8,3.1,7.8,3.1c3.4,0,6.9-1.4,9.4-4L207.8,221l187.1,184.7c4.8,4.7,12.9,5.1,17.2,0.8c4.5-4.5,4.1-12.1-0.8-17L224.2,204.9z"/>
+            </svg>
+          </div>
+        </div>
+        <div id="searchBarContainer"><input className='searchBar' placeholder='Search for a to-do'/></div>
+        <div className="gradient"></div>
+        <div id="toDoContainer">
+          <img src="alex.jpg" id="userAvatarImg"/>
+          <div id="userGreet">Hello, Alex.</div>
+          <div id="inspirationQuote"><Inspiration inspQuote={inspiration[randomNumber].quote} inspAuthor={inspiration[randomNumber].author}/></div>
+          <div id="taskCount"><TaskNumber tasks={6}/></div>
+        </div>
+        <div id="variousToDos">
+          <div id="date">
+              <span>TODAY: {date.toUpperCase()}</span>
+          </div>
+          <div id="toDoListContainerSmall">
+            <div id="leftSlideArrow" className='slideArrows' onClick={this.changeSlideLeft}>
+              <div></div>
+              <svg version="1.1" className="leftArrow" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" x="0px" y="0px" viewBox="0 0 24 24">
+                <path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z"/>
+              </svg>
+            </div>
+            <div id="selectedToDo">
+              <RenderSlide svg={todoAvatars[this.state.slideNum].categoryImg} catName={this.state.categories[this.state.slideNum].category} percent={calculatedPercentage}/>
+            </div>
+            <div id="rightSlideArrow" className='slideArrows' onClick={this.changeSlideRight}>
+              <svg version="1.1" className="rightArrow" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" x="0px" y="0px" viewBox="0 0 24 24">
+                <path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+}
+
+export default TodoList
 
 let todoAvatars = [
   {categoryName: 'personal', categoryImg: 'M20.822 18.096c-3.439-.794-6.641-1.49-5.09-4.418 4.719-8.912 1.251-13.678-3.732-13.678-5.082 0-8.465 4.949-3.732 13.678 1.598 2.945-1.725 3.641-5.09 4.418-2.979.688-3.178 2.143-3.178 4.663l.005 1.241h1.995c0-3.134-.125-3.55 1.838-4.003 2.851-.657 5.543-1.278 6.525-3.456.359-.795.592-2.103-.338-3.815-2.058-3.799-2.578-7.089-1.423-9.026 1.354-2.275 5.426-2.264 6.767-.034 1.15 1.911.639 5.219-1.403 9.076-.91 1.719-.671 3.023-.31 3.814.99 2.167 3.707 2.794 6.584 3.458 1.879.436 1.76.882 1.76 3.986h1.995l.005-1.241c0-2.52-.199-3.975-3.178-4.663z'},
@@ -36,13 +118,6 @@ let mm = today.getMonth()
 let yyyy = today.getFullYear()
 let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 let date = months[mm] + ' ' + dd + ', ' + yyyy
-
-let slideNum = 0
-
-let notFinished = todoCategories[slideNum].unfinishedTodo.length
-let finished = todoCategories[slideNum].finishedTodo.length
-let sum = notFinished + finished
-let calculatedPercentage = (finished/sum*100).toFixed(1)
 
 let inspiration = [
   {'quote': "Whatever you are, be a good one.", 'author': "Abraham Lincoln"},
@@ -174,66 +249,3 @@ function Inspiration(props) {
 // $(document).on('click', '.addButton', function() {
 //
 // })
-
-class TodoList extends Component {
-  state = {
-    slideNum: 0,
-    categories: categories,
-  }
-
-  changeSlide = () => {
-    this.setState({slideNum: this.state.slideNum + 1})
-  }
-
-  render () {
-    const {slideNum} = this.state
-    return (<div>
-      <div id="header">
-        <div id="menu">
-          <div className="rectangle"></div>
-          <div className="rectangle"></div>
-          <div className="rectangle"></div>
-        </div>
-        <div id="title">TODO</div>
-        <div id="search">
-          <svg version="1.1" className="searchIcon" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 384 381"  xmlSpace="preserve">
-            <path d="M385,360.7L271.7,247.3c20.8-26,33.3-59.1,33.3-95.1C305,68.1,236.9,0,153,0C69,0,1,68.2,1,152.2s68.1,152.2,152,152.2c36.2,0,69.4-12.7,95.5-33.8L361.7,384L385,360.7z M56.8,248.6C31.1,222.9,17,188.7,17,152.3S31.2,81.7,56.8,56s59.9-40,96.2-40s70.5,14.2,96.2,39.9s39.8,59.9,39.8,96.3s-14.2,70.6-39.8,96.3c-25.7,25.7-59.9,39.9-96.2,39.9C116.7,288.5,82.5,274.3,56.8,248.6z"/>
-          </svg>
-          <svg version="1.1" className="xIcon" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 415 409.7"  xmlSpace="preserve">
-            <path d="M224.2,204.9L411.3,20.2c2.5-2.5,4-5.9,4-9.3c0-3-1.1-5.7-3.2-7.7c-2-2-4.8-3.1-7.8-3.1c-3.4,0-6.9,1.5-9.4,4L207.8,188.7L20.8,4c-2.5-2.5-6-4-9.4-4c-3,0-5.8,1.1-7.8,3.1c-2,2-3.2,4.7-3.2,7.7c0,3.4,1.5,6.7,4,9.3l187.1,184.7L4.4,389.5c-2.5,2.4-3.9,5.5-4,8.7c-0.1,3.2,1,6.1,3.1,8.3c2,2,4.8,3.1,7.8,3.1c3.4,0,6.9-1.4,9.4-4L207.8,221l187.1,184.7c4.8,4.7,12.9,5.1,17.2,0.8c4.5-4.5,4.1-12.1-0.8-17L224.2,204.9z"/>
-          </svg>
-        </div>
-      </div>
-      <div id="searchBarContainer"><input className='searchBar' placeholder='Search for a to-do'/></div>
-      <div className="gradient"></div>
-      <div id="toDoContainer">
-        <img src="alex.jpg" id="userAvatarImg"/>
-        <div id="userGreet">Hello, Alex.</div>
-        <div id="inspirationQuote"><Inspiration inspQuote={inspiration[randomNumber].quote} inspAuthor={inspiration[randomNumber].author}/></div>
-        <div id="taskCount"><TaskNumber tasks={tasks}/></div>
-      </div>
-      <div id="variousToDos">
-        <div id="date">
-            <span>TODAY: {date.toUpperCase()}</span>
-        </div>
-        <div id="toDoListContainerSmall">
-          <div id="leftSlideArrow" className='slideArrows' onClick={this.changeSlide}>
-            <svg version="1.1" className="leftArrow" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" x="0px" y="0px" viewBox="0 0 24 24">
-              <path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z"/>
-            </svg>
-          </div>
-          <div id="selectedToDo">
-            <RenderSlide svg={todoAvatars[slideNum].categoryImg} catName={todoCategories[slideNum].categoryName} percent={calculatedPercentage}/>
-          </div>
-          <div id="rightSlideArrow" className='slideArrows' onClick={this.changeSlide}>
-            <svg version="1.1" className="rightArrow" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" x="0px" y="0px" viewBox="0 0 24 24">
-              <path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z"/>
-            </svg>
-          </div>
-        </div>
-      </div>
-    </div>)
-  }
-}
-
-export default TodoList

@@ -1,13 +1,10 @@
 import React from 'react';
-import { BrowserRouter, Route} from 'react-router-dom';
-
-// import SignIn from '../components/sign_in.js';
+import {BrowserRouter, Route} from 'react-router-dom';
 
 export default () => (
   <BrowserRouter>
-    <div>cao</div>
   </BrowserRouter>
 )
 
-
+// import SignIn from '../components/sign_in.js';
 // <Route path="/login" component={SignIn}></Route>

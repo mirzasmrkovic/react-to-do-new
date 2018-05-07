@@ -2,28 +2,28 @@
   "categories": {
     "0": {
       "category": "Personal",
-       "complete": ["Some title", "another title", "Some title", "another title", "great todo"],
-       "incomplete": ["araihjri title", "arjti title", "Some title", "another title", "great todo"]
+       "completeTodo": ["Some title", "another title", "Some title", "another title", "great todo"],
+       "incompleteTodo": ["araihjri title", "arjti title", "Some title"]
      },
-    "0": {
+    "1": {
       "category": "Work",
-       "complete": ["Some title", "another title", "Some title", "another title", "great todo"],
-       "incomplete": ["araihjri title", "arjti title", "Some title", "another title", "great todo"]
+       "completeTodo": ["Some title", "another title", "Some title", "another title", "great todo"],
+       "incompleteTodo": ["araihjri title", "arjti title", "Some title", "another title", "great todo"]
      },
-    "0": {
+    "2": {
       "category": "Fitness",
-       "complete": ["Some title", "another title", "Some title", "another title", "great todo"],
-       "incomplete": ["araihjri title", "arjti title", "Some title", "another title", "great todo"]
+       "completeTodo": ["Some title", "another title", "Some title", "another title", "great todo", "arjti title", "arjti title"],
+       "incompleteTodo": ["araihjri title", "Some title", "another title", "great todo"]
      },
-    "0": {
+    "3": {
       "category": "Groceries",
-       "complete": ["Some title", "another title", "Some title", "another title", "great todo"],
-       "incomplete": ["araihjri title", "arjti title", "Some title", "another title", "great todo"]
+       "completeTodo": ["Some title", "another title", "Some title", "another title", "another title", "another title", "great todo"],
+       "incompleteTodo": ["araihjri title", "arjti title", "great todo"]
      },
-    "0": {
+    "4": {
       "category": "Miscellaneous",
-       "complete": ["Some title", "another title", "Some title", "another title", "great todo"],
-       "incomplete": ["araihjri title", "arjti title", "Some title", "another title", "great todo"]
+       "completeTodo": ["Some title", "another title", "Some title", "another title", "great todo", "another title", "great todo", "another title", "great todo"],
+       "incompleteTodo": ["araihjri title", "arjti title", "Some title"]
      }
   }
 }
