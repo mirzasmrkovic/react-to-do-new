@@ -1,11 +1,16 @@
-import React from 'react'
+import React, { Component } from 'react';
 
-export default function RenderProgress(props) {
-  let progress = {width: props.percent + '%'}
-  return (
-    <div className="statusBar">
-      <span className="progressBar"><span className="progress" style={progress}></span></span>
-      <span className="percentage">{props.percent + '%'}</span>
-    </div>
-  )
+
+class RenderProgress extends Component {
+  render() {
+    let progress = {width: this.props.percent + '%'}
+    return (
+      <div className="statusBar">
+        <span className="progressBar"><span className="progress" style={progress}></span></span>
+        <span className="percentage">{this.props.percent + '%'}</span>
+      </div>
+    )
+  }
 }
+
+export default RenderProgress

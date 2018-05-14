@@ -1,18 +1,34 @@
-import React from 'react'
-import RenderProgress from './RenderProgress'
+import React, { Component } from 'react';
 import CurrentCat from './CurrentCat'
 
-export default function RenderSlide(props) {
-  return (
-  <div className="toDoListsSmall">
-    <div className="categoryAvatar">
-      <svg className="avatarColor">
-        <path d={props.svg}></path>
-      </svg>
-    </div>
-    <div className="numOfTasks">7 tasks</div>
-    <div className="categoryName"><CurrentCat catName={props.catName}/></div>
-    <RenderProgress percent={props.percent}/>
-  </div>
-  )
+
+class RenderProgress extends Component {
+  render() {
+    let progress = {width: this.props.percent + '%'}
+    return (
+      <div className="statusBar">
+        <span className="progressBar"><span className="progress" style={progress}></span></span>
+        <span className="percentage">{this.props.percent + '%'}</span>
+      </div>
+    )
+  }
 }
+
+class RenderSlide extends Component {
+  render() {
+    return (
+      <div onClick={this.props.handleSlide} className="toDoListsSmall">
+        <div className="categoryAvatar">
+          <svg className="avatarColor">
+            <path d={this.props.categoryImg}></path>
+          </svg>
+        </div>
+        <div className="numOfTasks">7 tasks</div>
+        <div className="categoryName"><CurrentCat catName={this.props.catName}/></div>
+        <RenderProgress percent={this.props.percent}/>
+      </div>
+    )
+  }
+}
+
+export default RenderSlide

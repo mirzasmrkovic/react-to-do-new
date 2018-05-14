@@ -1,72 +1,6 @@
-import React, { Component } from 'react';
+starting html
 
-import RenderSlide from './RenderSlide'
-import TodoBody from './TodoBody'
-import SearchBar from './searchbar.js'
-
-import {categories} from '../json/categories.json'
-
-class TaskNumber extends Component {
-  render(){
-    return(
-      <div id="taskCount">You have {this.props.tasks} tasks todo today.</div>
-    )
-  }
-}
-
-class TodoList extends Component {
-  state = {
-    slideNum: 0,
-    categories: categories,
-    openSearch: false,
-  }
-
-  _handleSlide = () => {
-    console.log('pls work')
-    this.props.history.push('/todo')
-  }
-
-  changeSlideLeft = () => {
-    if (this.state.slideNum === 0) {
-      this.setState({
-        slideNum: (Object.keys(this.state.categories).length)-1,
-      })
-    }
-    else {
-      this.setState({
-        slideNum: (this.state.slideNum - 1),
-      })
-    }
-  }
-
-  changeSlideRight = () => {
-    if (this.state.slideNum === (Object.keys(this.state.categories).length)-1) {
-      this.setState({
-        slideNum: 0,
-      })
-    }
-    else {
-      this.setState({
-        slideNum: (this.state.slideNum + 1),
-      })
-    }
-  }
-
-  _handleSearch = () => {
-    this.setState(prevState => {
-      return {
-        openSearch: !prevState.openSearch,
-      }
-    })
-  }
-
-  render () {
-    let notFinished = this.state.categories[this.state.slideNum].incompleteTodo.length
-    let finished = this.state.categories[this.state.slideNum].completeTodo.length
-    let calculatedPercentage = (finished/(notFinished + finished)*100).toFixed(1)
-
-    return (
-      <div>
+<div>
         <div id="header">
           <div id="menu">
             <div className="rectangle"></div>
@@ -107,7 +41,7 @@ class TodoList extends Component {
             <div id="selectedToDo">
               <RenderSlide
                 handleSlide={this._handleSlide}
-                categoryImg={this.state.categories[this.state.slideNum].categoryImg}
+                svg={this.state.categories[this.state.slideNum].categoryImg}
                 catName={this.state.categories[this.state.slideNum].category}
                 percent={calculatedPercentage}
               />
@@ -119,18 +53,10 @@ class TodoList extends Component {
             </button>
           </div>
         </div>
-        {/*<TodoBody
-          todoCategories={this.state.categories}
-          categoryImg={this.state.categories[this.state.slideNum].categoryImg}
-          calculatedPercentage={calculatedPercentage}
-          slideNum={this.state.slideNum}
-        />*/}
       </div>
-    )
-  }
-}
 
-export default TodoList
+
+date 
 
 let today = new Date()
 let dd = today.getDate()
@@ -138,3 +64,38 @@ let mm = today.getMonth()
 let yyyy = today.getFullYear()
 let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 let date = months[mm] + ' ' + dd + ', ' + yyyy
+
+addTask
+
+<div className='addTask'>
+	<div className='newTaskHeader'>New Task</div>
+	<div className='inputContainer'>
+		<div className='inputDescription'>Add a new task</div>
+		<input className='inputTodo' type='text' autoFocus/>
+		<div className='addButton'>
+			<svg version="1.1" className="addIcon" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" x="0px" y="0px" viewBox="0 0 24 24">
+				<path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/>
+			</svg>
+		</div>
+	</div>
+</div>
+
+alt header
+
+<div id="header">
+        <div id="returnBack">
+          <svg version="1.1" className="backArrow" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" x="0px" y="0px" viewBox="0 0 24 24">
+            <path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"/>
+          </svg>
+        </div>
+        <div id="title"><CurrentCat catName={todoCategories[slideNum].categoryName}/></div>
+        <div className='todoMenu'>
+          <svg version="1.1" className="dottedMenu" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" x="0px" y="0px" viewBox="0 0 24 24">
+            <path d="M12 18c1.657 0 3 1.343 3 3s-1.343 3-3 3-3-1.343-3-3 1.343-3 3-3zm0-9c1.657 0 3 1.343 3 3s-1.343 3-3 3-3-1.343-3-3 1.343-3 3-3zm0-9c1.657 0 3 1.343 3 3s-1.343 3-3 3-3-1.343-3-3 1.343-3 3-3z"/>
+          </svg>
+        </div>
+      </div>
+      <div className='gradient'></div>
+      <TodoBody todoCategories={todoCategories} calculatedPercentage={calculatedPercentage} slideNum={slideNum}/>
+    </div>
+
