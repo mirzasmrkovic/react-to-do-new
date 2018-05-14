@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import RenderSlide from './RenderSlide'
 import TodoBody from './TodoBody'
+import SearchBar from './searchbar.js'
 
 import {categories} from './json/categories.json'
 
@@ -17,6 +18,7 @@ class TodoList extends Component {
   state = {
     slideNum: 0,
     categories: categories,
+    openSearch: false,
   }
 
   changeSlideLeft = () => {
@@ -45,6 +47,14 @@ class TodoList extends Component {
     }
   }
 
+  _handleSearch = () => {
+    this.setState(prevState => {
+      return {
+        openSearch: !prevState.openSearch,
+      }
+    })
+  }
+
   render () {
     let notFinished = this.state.categories[this.state.slideNum].incompleteTodo.length
     let finished = this.state.categories[this.state.slideNum].completeTodo.length
@@ -59,7 +69,7 @@ class TodoList extends Component {
             <div className="rectangle"></div>
           </div>
           <div id="title">TODO</div>
-          <div id="search">
+          <div onClick={this._handleSearch} id="search">
             <svg version="1.1" className="searchIcon" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 384 381"  xmlSpace="preserve">
               <path d="M385,360.7L271.7,247.3c20.8-26,33.3-59.1,33.3-95.1C305,68.1,236.9,0,153,0C69,0,1,68.2,1,152.2s68.1,152.2,152,152.2c36.2,0,69.4-12.7,95.5-33.8L361.7,384L385,360.7z M56.8,248.6C31.1,222.9,17,188.7,17,152.3S31.2,81.7,56.8,56s59.9-40,96.2-40s70.5,14.2,96.2,39.9s39.8,59.9,39.8,96.3s-14.2,70.6-39.8,96.3c-25.7,25.7-59.9,39.9-96.2,39.9C116.7,288.5,82.5,274.3,56.8,248.6z"/>
             </svg>
@@ -68,12 +78,12 @@ class TodoList extends Component {
             </svg>
           </div>
         </div>
-        <div id="searchBarContainer"><input className='searchBar' placeholder='Search for a to-do'/></div>
+        {this.state.openSearch && <SearchBar />}
         <div className="gradient"></div>
         <div id="toDoContainer">
           <img src="alex.jpg" id="userAvatarImg"/>
           <div id="userGreet">Hello, Alex.</div>
-          <div id="inspirationQuote"><Inspiration inspQuote={inspiration[randomNumber].quote} inspAuthor={inspiration[randomNumber].author}/></div>
+          <div>reminder (add a way to edit reminders)</div>
           <div id="taskCount"><TaskNumber tasks={6}/></div>
         </div>
         <div id="variousToDos">
@@ -81,20 +91,20 @@ class TodoList extends Component {
               <span>TODAY: {date.toUpperCase()}</span>
           </div>
           <div id="toDoListContainerSmall">
-            <div id="leftSlideArrow" className='slideArrows' onClick={this.changeSlideLeft}>
+            <button className='slideArrows' onClick={this.changeSlideLeft}>
               <div></div>
               <svg version="1.1" className="leftArrow" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" x="0px" y="0px" viewBox="0 0 24 24">
                 <path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z"/>
               </svg>
-            </div>
+            </button>
             <div id="selectedToDo">
               <RenderSlide svg={todoAvatars[this.state.slideNum].categoryImg} catName={this.state.categories[this.state.slideNum].category} percent={calculatedPercentage}/>
             </div>
-            <div id="rightSlideArrow" className='slideArrows' onClick={this.changeSlideRight}>
+            <button className='slideArrows' onClick={this.changeSlideRight}>
               <svg version="1.1" className="rightArrow" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" x="0px" y="0px" viewBox="0 0 24 24">
                 <path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z"/>
               </svg>
-            </div>
+            </button>
           </div>
         </div>
       </div>
@@ -118,41 +128,6 @@ let mm = today.getMonth()
 let yyyy = today.getFullYear()
 let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 let date = months[mm] + ' ' + dd + ', ' + yyyy
-
-let inspiration = [
-  {'quote': "Whatever you are, be a good one.", 'author': "Abraham Lincoln"},
-  {'quote': "If you dream it, you can do it.", 'author': "Walt Disney"},
-  {'quote': "Never, never, never give up.", 'author': "Winston Churchill"},
-  {'quote': "Don’t wait. The time will never be just right.", 'author': "Napoleon Hill"},
-  {'quote': "If not us, who? If not now, when?", 'author': "John F. Kennedy"},
-  {'quote': "Everything you can imagine is real.", 'author': "Pablo Picasso"},
-  {'quote': "I can, therefore I am", 'author': "Simone Weil"},
-  {'quote': "Remember no one can make you feel inferior without your consent.", 'author': "Eleanor Roosevelt"},
-  {'quote': "Turn your wounds into wisdom.", 'author': "Oprah Winfrey"},
-  {'quote': "Wherever you go, go with all your heart.", 'author': "Confucius"},
-  {'quote': "Do what you can, with what you have, where you are.", 'author': "Theodore Roosevelt"},
-  {'quote': "Hope is a waking dream.", 'author': "Aristotle"},
-  {'quote': "Action is the foundational key to all success.", 'author': "Pablo Picasso"},
-  {'quote': "Do one thing every day that scares you.", 'author': "Eleanor Roosevelt"},
-  {'quote': "You must do the thing you think you cannot do.", 'author': "Eleanor Roosevelt"},
-  {'quote': "Life is trying things to see if they work.", 'author': "Ray Bradbury"},
-  {'quote': "Believe you can and you’re halfway there.", 'author': "Theodore Roosevelt"},
-  {'quote': "Eighty percent of success is showing up.", 'author': "Woody Allen"},
-]
-
-let numOfInsp
-inspiration.forEach(function(item, index) { //Finds number of items in inspiration so you don't have to
-  numOfInsp = index                        //update the number every time you add a new quote
-})
-let randomNumber = Math.floor((Math.random() * (numOfInsp + 1)))
-
-function Inspiration(props) {
-  return (
-    <div className='quote'>{props.inspQuote}
-      <div className='author'>&emsp;&emsp; - <b>{props.inspAuthor}</b></div>
-    </div>
-  )
-}
 
 // function searchBar(props) {
 //   return (
