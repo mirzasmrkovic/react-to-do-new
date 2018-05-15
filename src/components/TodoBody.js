@@ -20,7 +20,7 @@ class TodoBody extends Component {
         </div>
         <div className='toDoLists'>
           <div className='numOfTasks'>12 tasks</div>
-          <div className='categoryName'><CurrentCat catName={this.props.todoCategories[this.props.slideNum].categoryName}/></div>
+          <div className='categoryName'><CurrentCat/></div>
           <RenderProgress percent={this.props.calculatedPercentage}/>
         </div>
         <div className='listOfTodos'>
