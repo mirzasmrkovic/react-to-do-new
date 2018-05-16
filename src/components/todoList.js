@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import RenderSlide from './RenderSlide'
-import TodoBody from './TodoBody'
+import RenderSlide from './renderSlide.js'
+import TodoBody from './todoBody.js'
 import SearchBar from './searchbar.js'
 
 class TaskNumber extends Component {
@@ -14,39 +14,11 @@ class TaskNumber extends Component {
 
 class TodoList extends Component {
   state = {
-    slideNum: 0,
-    categories: this.props.categories,
     openSearch: false,
   }
 
-  _handleSlide = () => {
-    this.props.history.push('/todo')
-  }
-
-  changeSlideLeft = () => {
-    if (this.state.slideNum === 0) {
-      this.setState({
-        slideNum: (Object.keys(this.state.categories).length)-1,
-      })
-    }
-    else {
-      this.setState({
-        slideNum: (this.state.slideNum - 1),
-      })
-    }
-  }
-
-  changeSlideRight = () => {
-    if (this.state.slideNum === (Object.keys(this.state.categories).length)-1) {
-      this.setState({
-        slideNum: 0,
-      })
-    }
-    else {
-      this.setState({
-        slideNum: (this.state.slideNum + 1),
-      })
-    }
+  openSlide = () => {
+    this.props.history.push('/todoList')
   }
 
   _handleSearch = () => {
@@ -58,10 +30,6 @@ class TodoList extends Component {
   }
 
   render () {
-    let notFinished = this.state.categories[this.state.slideNum].incompleteTodo.length
-    let finished = this.state.categories[this.state.slideNum].completeTodo.length
-    let calculatedPercentage = (finished/(notFinished + finished)*100).toFixed(1)
-
     return (
       <div>
         {this.state.openSearch && <SearchBar />}
@@ -77,7 +45,7 @@ class TodoList extends Component {
               <span>TODAY: {date.toUpperCase()}</span>
           </div>
           <div id="toDoListContainerSmall">
-            <button className='slideArrows' onClick={this.changeSlideLeft}>
+            <button className='slideArrows' onClick={this.props.changeSlideLeft}>
               <div></div>
               <svg version="1.1" className="leftArrow" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" x="0px" y="0px" viewBox="0 0 24 24">
                 <path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z"/>
@@ -85,13 +53,12 @@ class TodoList extends Component {
             </button>
             <div id="selectedToDo">
               <RenderSlide
-                handleSlide={this._handleSlide}
-                categoryImg={this.state.categories[this.state.slideNum].categoryImg}
-                catName={this.state.categories[this.state.slideNum].category}
-                percent={calculatedPercentage}
+                openSlide={this.openSlide}
+                categories={this.props.categories}
+                slideNum={this.props.slideNum}
               />
             </div>
-            <button className='slideArrows' onClick={this.changeSlideRight}>
+            <button className='slideArrows' onClick={this.props.changeSlideRight}>
               <svg version="1.1" className="rightArrow" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" x="0px" y="0px" viewBox="0 0 24 24">
                 <path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z"/>
               </svg>
@@ -99,10 +66,10 @@ class TodoList extends Component {
           </div>
         </div>
         {/*<TodoBody
-          todoCategories={this.state.categories}
-          categoryImg={this.state.categories[this.state.slideNum].categoryImg}
+          todoCategories={this.props.categories}
+          categoryImg={this.props.categories[this.props.slideNum].categoryImg}
           calculatedPercentage={calculatedPercentage}
-          slideNum={this.state.slideNum}
+          slideNum={this.props.slideNum}
         />*/}
       </div>
     )

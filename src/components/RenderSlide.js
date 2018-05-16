@@ -1,31 +1,22 @@
 import React, { Component } from 'react';
 import CurrentCat from './CurrentCat'
-
-
-class RenderProgress extends Component {
-  render() {
-    let progress = {width: this.props.percent + '%'}
-    return (
-      <div className="statusBar">
-        <span className="progressBar"><span className="progress" style={progress}></span></span>
-        <span className="percentage">{this.props.percent + '%'}</span>
-      </div>
-    )
-  }
-}
+import RenderProgress from './renderProgress.js'
 
 class RenderSlide extends Component {
   render() {
     return (
-      <div onClick={this.props.handleSlide} className="toDoListsSmall">
+      <div onClick={this.props.openSlide} className="toDoListSmall">
         <div className="categoryAvatar">
           <svg className="avatarColor">
-            <path d={this.props.categoryImg}></path>
+            <path d={this.props.categories[this.props.slideNum].categoryImg}></path>
           </svg>
         </div>
         <div className="numOfTasks">7 tasks</div>
-        <div className="categoryName"><CurrentCat catName={this.props.catName}/></div>
-        <RenderProgress percent={this.props.percent}/>
+        <div className="categoryName"><CurrentCat catName={this.props.categories[this.props.slideNum].category}/></div>
+        <RenderProgress
+          categories={this.props.categories}
+          slideNum={this.props.slideNum}
+        />
       </div>
     )
   }
