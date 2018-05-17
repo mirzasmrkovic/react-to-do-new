@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import SelectedTodo from './selectedTodo.js'
-import TodoBody from './todoBody.js'
 
 class TaskNumber extends Component {
   render(){
@@ -14,13 +13,14 @@ class TaskNumber extends Component {
 class TodoList extends Component {
   openSlide = () => {
     this.props.history.push('/todoList')
+    this.props.handleReturn()
   }
 
-  render () {
+  render() {
     return (
       <div>
         <div id="toDoContainer">
-          <img src="alex.jpg" id="userAvatarImg"/>
+          <img src="alex.jpg" alt='profile-img' id="userAvatarImg"/>
           <div id="userGreet">Hello, Alex.</div>
           <div>reminder (add a way to edit reminders)</div>
           <div id="taskCount"><TaskNumber tasks={6}/></div>
@@ -37,6 +37,7 @@ class TodoList extends Component {
               </svg>
             </button>
             <SelectedTodo
+              closeSearch={this.props.closeSearch}
               openSlide={this.openSlide}
               categories={this.props.categories}
               slideNum={this.props.slideNum}

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './index.css'
+import './css/index.css'
+import './css/common.css'
 
-import TodoList from './components/todoList.js'
 import SearchBar from './components/searchbar.js'
 
 import Routes from './routes/routes.js'
@@ -13,6 +13,19 @@ class App extends Component {
     slideNum: 0,
     categories: categories,
     openSearch: false,
+    todoBody: false,
+  }
+
+  _handleReturn = () => {
+    this.setState({
+      todoBody: true,
+    })
+  }
+
+  returnBack = () => {
+    this.setState({
+      todoBody: false,
+    })
   }
 
   changeSlideLeft = () => {
@@ -60,6 +73,9 @@ class App extends Component {
       <div className="page">
         <Header
           openSearch={this.state.openSearch}
+          todoBody={this.state.todoBody}
+
+          returnBack={this.returnBack}
           handleSearch={this._handleSearch}
         />
         {this.state.openSearch && <SearchBar />}
@@ -67,8 +83,10 @@ class App extends Component {
         <Routes
           slideNum={this.state.slideNum}
           categories={this.state.categories}
+          todoBody={this.state.todoBody}
 
           closeSearch={this.closeSearch}
+          handleReturn={this._handleReturn}
           changeSlideLeft={this.changeSlideLeft}
           changeSlideRight={this.changeSlideRight}
         />

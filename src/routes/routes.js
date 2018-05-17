@@ -18,6 +18,7 @@ class Routes extends Component {
               categories={this.props.categories}
 
               closeSearch={this.props.closeSearch}
+              handleReturn={this.props.handleReturn}
               changeSlideLeft={this.props.changeSlideLeft}
               changeSlideRight={this.props.changeSlideRight}
             />}
@@ -25,6 +26,7 @@ class Routes extends Component {
           <Route path='/todoList'
             render={(props) => <TodoBody
               {...props}
+              todoBody={this.props.todoBody}
               calculatedPercentage={this.props.calculatedPercentage}
               slideNum={this.props.slideNum}
               categories={this.props.categories}

@@ -83,7 +83,7 @@ a {
   background-repeat: no-repeat;
   background-size: 18px 18px;
   background-position: 10px center;
-  background-image: url(icons/searchIcon.svg);
+  background-image: url(../icons/searchIcon.svg);
 }
 
 .searchBarOpen {
@@ -202,6 +202,7 @@ a {
 
 #toDoBody {
   padding: 30px 50px;
+  background-color: #efefef;
 }
 
 .todoMenu {
@@ -324,7 +325,6 @@ a {
 .toDoLists {
   margin: 20px 0px;
   color: #777;
-  background-color: white;
 }
 
 
@@ -400,7 +400,6 @@ a {
 .textCheckContainer {
   display: flex;
   align-items: center;
-  background-color: white;
 }
 
 .textCheckContainer:hover .checkMarkContainer{

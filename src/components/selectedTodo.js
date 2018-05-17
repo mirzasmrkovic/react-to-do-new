@@ -3,10 +3,15 @@ import CurrentCat from './CurrentCat'
 import RenderProgress from './renderProgress.js'
 
 class SelectedTodo extends Component {
+  _handleClick = () => {
+    this.props.openSlide()
+    this.props.closeSearch()
+  }
+
   render() {
     return (
       <div id="selectedToDo">
-        <div onClick={this.props.openSlide} className="toDoListSmall">
+        <div onClick={this._handleClick} className="toDoListSmall">
           <div className="categoryAvatar">
             <svg className="avatarColor">
               <path d={this.props.categories[this.props.slideNum].categoryImg}></path>

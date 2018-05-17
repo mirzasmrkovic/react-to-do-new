@@ -6,6 +6,9 @@ import TodoItem from './todoItem.js'
 
 class TodoBody extends Component {
   render() {
+    if (!this.props.todoBody) {
+      this.props.history.push('/todo')
+    }
     return (
       <div id='toDoBody'>
         <div className='todoBodyHeader'>
@@ -33,9 +36,10 @@ class TodoBody extends Component {
           <div className='unfinishedTodo'>
             <span className='todoTitle'>Todos to be finished</span>
             <div className='itemContainer'>
-              {this.props.categories[this.props.slideNum].incompleteTodo.map((e) =>
+              {this.props.categories[this.props.slideNum].incompleteTodo.map((e,n) =>
                 <TodoItem
                   todoText={e}
+                  key={n}
                 />
               )}
             </div>
@@ -43,9 +47,10 @@ class TodoBody extends Component {
           <div className='finishedTodo'>
             <span className='todoTitle'>Finished todos</span>
             <div className='itemContainer'>
-              {this.props.categories[this.props.slideNum].completeTodo.map((e) =>
+              {this.props.categories[this.props.slideNum].completeTodo.map((e,n) =>
                 <TodoItem
                   todoText={e}
+                  key={n}
                 />
               )}
             </div>
