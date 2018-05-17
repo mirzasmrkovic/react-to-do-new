@@ -9,6 +9,11 @@ class TodoBody extends Component {
     if (!this.props.todoBody) {
       this.props.history.push('/todo')
     }
+
+    let complete = this.props.categories[this.props.slideNum].completeTodo.length
+    let incomplete = this.props.categories[this.props.slideNum].incompleteTodo.length
+    let taskSum = complete + incomplete
+
     return (
       <div id='toDoBody'>
         <div className='todoBodyHeader'>
@@ -24,7 +29,7 @@ class TodoBody extends Component {
           </div>
         </div>
         <div className='toDoLists'>
-          <div className='numOfTasks'>12 tasks</div>
+          <div className='numOfTasks'>{taskSum} tasks</div>
           <div className='categoryName'><CurrentCat/></div>
           <RenderProgress
             openSlide={this.openSlide}
@@ -40,6 +45,7 @@ class TodoBody extends Component {
                 <TodoItem
                   todoText={e}
                   key={n}
+                  completed={false}
                 />
               )}
             </div>
@@ -51,6 +57,7 @@ class TodoBody extends Component {
                 <TodoItem
                   todoText={e}
                   key={n}
+                  completed={true}
                 />
               )}
             </div>

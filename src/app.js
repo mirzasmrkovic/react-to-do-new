@@ -13,7 +13,7 @@ class App extends Component {
     slideNum: 0,
     categories: categories,
     openSearch: false,
-    todoBody: false,
+    todoBody: true,
   }
 
   _handleReturn = () => {

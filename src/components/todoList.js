@@ -5,7 +5,7 @@ import SelectedTodo from './selectedTodo.js'
 class TaskNumber extends Component {
   render(){
     return(
-      <div id="taskCount">You have {this.props.tasks} tasks todo today.</div>
+      <div id="taskCount"><s>You have {this.props.tasks} tasks todo today.</s></div>
     )
   }
 }
@@ -22,7 +22,7 @@ class TodoList extends Component {
         <div id="toDoContainer">
           <img src="alex.jpg" alt='profile-img' id="userAvatarImg"/>
           <div id="userGreet">Hello, Alex.</div>
-          <div>reminder (add a way to edit reminders)</div>
+          <div><s>reminder (add a way to edit reminders)</s></div>
           <div id="taskCount"><TaskNumber tasks={6}/></div>
         </div>
         <div id="variousToDos">

@@ -387,30 +387,35 @@ a {
   margin: 10px 0px;
 }
 
-.todoItems {
+.todo-items {
   padding: 5px 0px;
   display: flex;
   justify-content: space-between;
 }
 
-.todoItems .checkMark{
+.todo-items .checkMark{
     display: none;
 }
 
-.textCheckContainer {
+.check-container {
   display: flex;
   align-items: center;
 }
 
-.textCheckContainer:hover .checkMarkContainer{
+.check-container:hover .check-svg-container, .marked {
   border: 1px solid rgba(91,91,91,0.5);
+  background-color: rgb(91,190,182);
 }
 
-.textCheckContainer:hover {
+.check-container:hover {
   cursor: pointer;
 }
 
-.checkMarkContainer {
+.check-container:hover .checkMark, .marked .checkMark{
+  display: block;
+}
+
+.check-svg-container {
   width: 14px;
   height: 14px;
   display: flex;
@@ -424,32 +429,24 @@ a {
   max-width: 230px;
 }
 
-.deleteItem {
+.delete-item {
   display: flex;
   align-items: center;
 }
 
-.deleteItem:hover .deleteIcon {
+.delete-item:hover .deleteIcon {
   fill: #D84545;
 }
 
-.deleteItem:hover {
+.delete-item:hover {
   cursor: pointer;
-}
-
-.textCheckContainer:hover .checkMarkContainer{
-  background-color: rgb(91,190,182);
-}
-
-.textCheckContainer:hover .checkMark{
-  display: block;
 }
 
 .finishedItem {
   transition: background-color .5s ease;
 }
 
-.finishedItem .checkMarkContainer {
+.finishedItem .check-svg-container {
   background-color: rgb(91,190,182);
 }
 
