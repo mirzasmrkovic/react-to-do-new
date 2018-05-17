@@ -16,6 +16,8 @@ class Routes extends Component {
               slideNum={this.props.slideNum}
               calculatedPercentage={this.props.calculatedPercentage}
               categories={this.props.categories}
+
+              closeSearch={this.props.closeSearch}
               changeSlideLeft={this.props.changeSlideLeft}
               changeSlideRight={this.props.changeSlideRight}
             />}

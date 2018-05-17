@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './index.css'
+
 import TodoList from './components/todoList.js'
+import SearchBar from './components/searchbar.js'
 
 import Routes from './routes/routes.js'
 import Header from './components/header.js'
@@ -10,6 +12,7 @@ class App extends Component {
   state = {
     slideNum: 0,
     categories: categories,
+    openSearch: false,
   }
 
   changeSlideLeft = () => {
@@ -38,15 +41,36 @@ class App extends Component {
     }
   }
 
+  _handleSearch = () => {
+    this.setState(prevState => {
+      return {
+        openSearch: !prevState.openSearch,
+      }
+    })
+  }
+
+  closeSearch = () => {
+    this.setState({
+      openSearch: false,
+    })
+  }
+
   render() {
     return (
       <div className="page">
-        <Header />
+        <Header
+          openSearch={this.state.openSearch}
+          handleSearch={this._handleSearch}
+        />
+        {this.state.openSearch && <SearchBar />}
+        <div className="gradient"></div>
         <Routes
           slideNum={this.state.slideNum}
+          categories={this.state.categories}
+
+          closeSearch={this.closeSearch}
           changeSlideLeft={this.changeSlideLeft}
           changeSlideRight={this.changeSlideRight}
-          categories={this.state.categories}
         />
       </div>
     );

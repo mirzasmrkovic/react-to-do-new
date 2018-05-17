@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 
-import RenderSlide from './renderSlide.js'
+import SelectedTodo from './selectedTodo.js'
 import TodoBody from './todoBody.js'
-import SearchBar from './searchbar.js'
 
 class TaskNumber extends Component {
   render(){
@@ -13,27 +12,13 @@ class TaskNumber extends Component {
 }
 
 class TodoList extends Component {
-  state = {
-    openSearch: false,
-  }
-
   openSlide = () => {
     this.props.history.push('/todoList')
-  }
-
-  _handleSearch = () => {
-    this.setState(prevState => {
-      return {
-        openSearch: !prevState.openSearch,
-      }
-    })
   }
 
   render () {
     return (
       <div>
-        {this.state.openSearch && <SearchBar />}
-        <div className="gradient"></div>
         <div id="toDoContainer">
           <img src="alex.jpg" id="userAvatarImg"/>
           <div id="userGreet">Hello, Alex.</div>
@@ -51,13 +36,11 @@ class TodoList extends Component {
                 <path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z"/>
               </svg>
             </button>
-            <div id="selectedToDo">
-              <RenderSlide
-                openSlide={this.openSlide}
-                categories={this.props.categories}
-                slideNum={this.props.slideNum}
-              />
-            </div>
+            <SelectedTodo
+              openSlide={this.openSlide}
+              categories={this.props.categories}
+              slideNum={this.props.slideNum}
+            />
             <button className='slideArrows' onClick={this.props.changeSlideRight}>
               <svg version="1.1" className="rightArrow" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" x="0px" y="0px" viewBox="0 0 24 24">
                 <path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z"/>
@@ -65,12 +48,6 @@ class TodoList extends Component {
             </button>
           </div>
         </div>
-        {/*<TodoBody
-          todoCategories={this.props.categories}
-          categoryImg={this.props.categories[this.props.slideNum].categoryImg}
-          calculatedPercentage={calculatedPercentage}
-          slideNum={this.props.slideNum}
-        />*/}
       </div>
     )
   }
