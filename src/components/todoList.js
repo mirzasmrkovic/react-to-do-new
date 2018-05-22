@@ -13,7 +13,7 @@ class TaskNumber extends Component {
 class TodoList extends Component {
   openSlide = () => {
     this.props.history.push('/todoList')
-    this.props.handleReturn()
+    this.props.handleTodo()
   }
 
   render() {

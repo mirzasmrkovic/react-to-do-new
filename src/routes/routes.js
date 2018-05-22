@@ -3,6 +3,7 @@ import {BrowserRouter, Route} from 'react-router-dom';
 
 import TodoList from '../components/todoList.js'
 import TodoBody from '../components/todoBody.js'
+import AddTask from '../components/addTask.js'
 
 class Routes extends Component {
   render() {
@@ -18,7 +19,7 @@ class Routes extends Component {
               categories={this.props.categories}
 
               closeSearch={this.props.closeSearch}
-              handleReturn={this.props.handleReturn}
+              handleTodo={this.props.handleTodo}
               changeSlideLeft={this.props.changeSlideLeft}
               changeSlideRight={this.props.changeSlideRight}
             />}
@@ -30,6 +31,14 @@ class Routes extends Component {
               calculatedPercentage={this.props.calculatedPercentage}
               slideNum={this.props.slideNum}
               categories={this.props.categories}
+
+              handleAddTask={this.props.handleAddTask}
+            />}
+          ></Route>
+          <Route path='/addTodo'
+            render={(props) => <AddTask
+              {...props}
+              addTask={this.props.addTask}
             />}
           ></Route>
         </div>
