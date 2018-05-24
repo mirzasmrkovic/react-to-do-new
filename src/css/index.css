@@ -20,11 +20,16 @@ a {
 #header {
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
+  width: 400px;
   padding: 10px;
   background-color: #5BBEB6;
-  position: relative;
-  z-index: 5;
+}
+
+#title {
+  text-transform: uppercase;
+  color: #7c8089;
+  font-weight: bold;
 }
 
 .gradient {
@@ -52,12 +57,6 @@ a {
 
 #menu:hover {
   cursor: pointer;
-}
-
-#title {
-  margin: 0px 130px;
-  color: #7c8089;
-  font-weight: bold;
 }
 
 #search {
@@ -166,7 +165,6 @@ a {
 .rightArrow {
   transform: rotate(-90deg);
 }
-  /**/
 
 .todoBodyHeader {
   display: flex;
@@ -181,17 +179,8 @@ a {
   border-radius: 50%;
 }
 
-#returnBack {
-  padding: 0px 10px;
-  display: flex;
-}
-
-#returnBack:hover .backArrow {
+.returnBack:hover .backArrow {
   fill: rgba(111,114,123,0.5);
-}
-
-#returnBack:hover {
-  cursor: pointer;
 }
 
 #toDoContainer {
@@ -454,7 +443,7 @@ a {
   display: block;
 }
 
-.addTodo, .addButton{
+.add-todo {
   padding: 9px;
   display: flex;
   justify-content: center;
@@ -466,57 +455,36 @@ a {
   box-shadow: -2px 5px 5px 0px rgba(128,154,243,0.5);
 }
 
-.addButton {
-  width: 100%;
-  padding: 7px;
-  margin-top: 10px;
-  border-radius: 0;
-}
-
-.addTodo:hover .addIcon, .addButton:hover .addIcon {
+.add-todo:hover .addIcon{
   fill: #6ad0c8;
 }
 
-.addTodo:hover, .addButton:hover {
+.add-todo:hover {
   cursor: pointer;
 }
 
-.addTodo:active, .addButton:active {
+.add-todo:active {
   box-shadow: inset 0px 0px 5px 0px rgba(86,114,209,0.5);
 }
 
-.addTask {
-  display: flex;
-  flex-direction: column;
-}
-
-.newTaskHeader {
-  padding: 10px 0px;
-  display: flex;
-  margin-right: auto;
-  margin-left: auto;
-  font-size: 11pt;
-  color: #777;
-  font-weight: bold;
-}
-
-.inputContainer {
-  padding: 10px 0px;
-  display: flex;
-  flex-direction: column;
-}
-
-.inputDescription {
-  font-size: 10pt;
+input {
+  width: calc(100% - 10px);
+  outline: none;
+  border: none;
+  background-color: inherit;
+  border-bottom: 1px solid #c5c5c5;
   color: #999;
 }
 
-.inputTodo {
-  outline: none;
-  padding: 5px;
-  border: none;
-  border-left: 2px solid rgba(153,153,153,0.3);
-  margin-top: 10px;
+.category-item {
+
+}
+
+.category-circle {
+  padding: 3px;
+  border-width: 2px;
+  border-radius: 50%;
+  border-style: solid;
 }
 
 

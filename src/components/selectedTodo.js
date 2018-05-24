@@ -22,7 +22,7 @@ class SelectedTodo extends Component {
             </svg>
           </div>
           <div className="numOfTasks">{taskSum} tasks</div>
-          <div className="categoryName"><CurrentCat catName={this.props.categories[this.props.slideNum].category}/></div>
+          <div className="categoryName capitalize"><CurrentCat catName={this.props.categories[this.props.slideNum].category}/></div>
           <RenderProgress
             categories={this.props.categories}
             slideNum={this.props.slideNum}

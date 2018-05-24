@@ -14,13 +14,15 @@ class Header extends Component {
             </svg>
           }
         </div> :
-          <div onClick={this.props.returnBack} className="flex-property margin-left-10 margin-right-10">
+          <div onClick={this.props.returnBack} className="returnBack cursor-pointer flex-property margin-left-10 margin-right-10">
             <svg version="1.1" className="backArrow" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 24 24"  xmlSpace="preserve">
               <path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"/>
             </svg>
           </div>
         }
-        <div id="title">TODO</div>
+        <div id="title">
+          {this.props.todoBody ? (this.props.addTask ? 'add task' : this.props.categories[this.props.slideNum].category) : 'todo'}
+        </div>
         <div id="menu">
           <div className="rectangle"></div>
           <div className="rectangle"></div>

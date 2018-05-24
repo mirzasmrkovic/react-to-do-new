@@ -65,6 +65,16 @@
   cursor: pointer;
 }
 
+/*  ---  Text transform  ---  */
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
 /*  ---  Margin 5px  ---  */
 
 .margin-5 {
@@ -129,4 +139,52 @@
 
 .margin-bottom-20 {
   margin-bottom: 20px;
+}
+
+/*  --- Padding 5px  ---  */
+
+.padding-5 {
+  padding: 5px;
+}
+
+.padding-side-5 {
+  padding: 0px 5px;
+}
+
+.padding-up-dn-5 {
+  padding: 5px 0px;
+}
+
+/*  --- Padding 10px  ---  */
+
+.padding-10 {
+  padding: 10px;
+}
+
+.padding-side-10 {
+  padding: 0px 10px;
+}
+
+.padding-up-dn-10 {
+  padding: 10px 0px;
+}
+
+/*  --- Padding 20px  ---  */
+
+.padding-20 {
+  padding: 20px;
+}
+
+.padding-side-20 {
+  padding: 0px 20px;
+}
+
+.padding-up-dn-20 {
+  padding: 20px 0px;
+}
+
+/*  --- color  ---  */
+
+.dirty-white-bg {
+  background-color: #efefef;
 }

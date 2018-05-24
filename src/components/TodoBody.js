@@ -5,6 +5,11 @@ import CurrentCat from './CurrentCat.js'
 import TodoItem from './todoItem.js'
 
 class TodoBody extends Component {
+  _handleClick = () => {
+    this.props.history.push('/addTodo')
+    this.props.handleAddTask()
+  }
+
   render() {
     if (!this.props.todoBody) {
       this.props.history.push('/todo')
@@ -22,7 +27,7 @@ class TodoBody extends Component {
               <path d={this.props.categories[this.props.slideNum].categoryImg}/>
             </svg>
           </div>
-          <div className='addTodo'>
+          <div onClick={this._handleClick} className='add-todo'>
             <svg version="1.1" className="addIcon" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" x="0px" y="0px" viewBox="0 0 24 24">
               <path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/>
             </svg>

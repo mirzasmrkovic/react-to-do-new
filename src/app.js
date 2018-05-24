@@ -14,17 +14,31 @@ class App extends Component {
     categories: categories,
     openSearch: false,
     todoBody: true,
+    addTask: true,
   }
 
-  _handleReturn = () => {
+  _handleTodo = () => {
     this.setState({
       todoBody: true,
     })
   }
 
   returnBack = () => {
+    if (this.state.addTask) {
+      this.setState({
+        addTask: false,
+      })
+    }
+    else {
+      this.setState({
+        todoBody: false,
+      })
+    }
+  }
+
+  _handleAddTask = () => {
     this.setState({
-      todoBody: false,
+      addTask: true,
     })
   }
 
@@ -72,8 +86,11 @@ class App extends Component {
     return (
       <div className="page">
         <Header
+          categories={this.state.categories}
+          slideNum={this.state.slideNum}
           openSearch={this.state.openSearch}
           todoBody={this.state.todoBody}
+          addTask={this.state.addTask}
 
           returnBack={this.returnBack}
           handleSearch={this._handleSearch}
@@ -81,12 +98,14 @@ class App extends Component {
         {this.state.openSearch && <SearchBar />}
         <div className="gradient"></div>
         <Routes
-          slideNum={this.state.slideNum}
           categories={this.state.categories}
+          slideNum={this.state.slideNum}
           todoBody={this.state.todoBody}
+          addTask={this.state.addTask}
 
+          handleAddTask={this._handleAddTask}
           closeSearch={this.closeSearch}
-          handleReturn={this._handleReturn}
+          handleTodo={this._handleTodo}
           changeSlideLeft={this.changeSlideLeft}
           changeSlideRight={this.changeSlideRight}
         />
