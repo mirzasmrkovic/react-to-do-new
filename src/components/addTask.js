@@ -5,7 +5,7 @@ class CategoriyItems extends Component {
     let circleColor = {borderColor: this.props.category.categoryColor}
 
     return (
-      <div onClick={() => this.props.handleSlideNum(this.props.category.category)} className='flex-property align-items-center category-item padding-up-dn-5'>
+      <div onClick={() => this.props.handleSlideNum(this.props.category.category)} className='capitalize flex-property align-items-center category-item padding-up-dn-5'>
         <div style={circleColor} className='category-circle color margin-right-10'></div> {this.props.category.category}
       </div>
     )
