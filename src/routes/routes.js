@@ -14,9 +14,9 @@ class Routes extends Component {
             path='/todo'
             render={(props) => <TodoList
               {...props}
+              categories={this.props.categories}
               slideNum={this.props.slideNum}
               calculatedPercentage={this.props.calculatedPercentage}
-              categories={this.props.categories}
 
               closeSearch={this.props.closeSearch}
               handleTodo={this.props.handleTodo}
@@ -38,6 +38,8 @@ class Routes extends Component {
           <Route path='/addTodo'
             render={(props) => <AddTask
               {...props}
+              categories={this.props.categories}
+              slideNum={this.props.slideNum}
               addTask={this.props.addTask}
             />}
           ></Route>

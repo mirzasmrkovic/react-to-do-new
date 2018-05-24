@@ -98,8 +98,8 @@ class App extends Component {
         {this.state.openSearch && <SearchBar />}
         <div className="gradient"></div>
         <Routes
-          slideNum={this.state.slideNum}
           categories={this.state.categories}
+          slideNum={this.state.slideNum}
           todoBody={this.state.todoBody}
           addTask={this.state.addTask}
 

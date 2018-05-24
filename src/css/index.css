@@ -443,7 +443,7 @@ a {
   display: block;
 }
 
-.add-todo, .add-button{
+.add-todo {
   padding: 9px;
   display: flex;
   justify-content: center;
@@ -455,41 +455,36 @@ a {
   box-shadow: -2px 5px 5px 0px rgba(128,154,243,0.5);
 }
 
-.add-todo:hover .addIcon, .add-button:hover .addIcon {
+.add-todo:hover .addIcon{
   fill: #6ad0c8;
 }
 
-.add-todo:hover, .add-button:hover {
+.add-todo:hover {
   cursor: pointer;
 }
 
-.add-todo:active, .add-button:active {
+.add-todo:active {
   box-shadow: inset 0px 0px 5px 0px rgba(86,114,209,0.5);
 }
 
-.input-container {
-  padding: 10px 0px;
-  display: flex;
-  flex-direction: column;
-  background-color: #efefef;
-}
-
-.input-description {
-  font-size: 10pt;
+input {
+  width: 100%;
+  outline: none;
+  border: none;
+  background-color: inherit;
+  border-bottom: 1px solid #c5c5c5;
   color: #999;
 }
 
-.input-todo {
-  outline: none;
-  padding: 5px;
-  border: none;
-  border-left: 2px solid rgba(153,153,153,0.3);
-  margin-top: 10px;
-  background-color: inherit;
+.category-item {
+
 }
 
-.add-button {
-  width: 20%;
+.category-circle {
+  padding: 3px;
+  border-width: 2px;
+  border-radius: 50%;
+  border-style: solid;
 }
 
 
