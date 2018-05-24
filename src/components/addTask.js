@@ -5,7 +5,7 @@ class CategoriyItems extends Component {
     let circleColor = {borderColor: this.props.category.categoryColor}
 
     return (
-      <div className='flex-property align-items-center category-item padding-up-dn-5'>
+      <div onClick={() => this.props.handleSlideNum(this.props.category.category)} className='flex-property align-items-center category-item padding-up-dn-5'>
         <div style={circleColor} className='category-circle color margin-right-10'></div> {this.props.category.category}
       </div>
     )
@@ -14,7 +14,17 @@ class CategoriyItems extends Component {
 
 class AddTask extends Component {
   state = {
-    chosenCategory: this.props.categories[this.props.slideNum].category,
+    slideNum: this.props.slideNum,
+  }
+
+  _handleSlideNum = (n) => {
+    this.props.categories.map((i,num) => {
+      if (n === i.category) {
+        return this.setState({
+          slideNum: num,
+        })
+      }
+    })
   }
 
   render() {
@@ -22,15 +32,20 @@ class AddTask extends Component {
       this.props.history.push('/todoList')
     }
 
+    let chosenCategory = this.props.categories[this.state.slideNum].category
+
     return (
       <div className='dirty-white-bg padding-20'>
-        <input className='padding-5 margin-top-10' type='text' placeholder={'Add new task to ' + this.state.chosenCategory.toUpperCase()} autoFocus/>
+        <input className='padding-5 margin-top-10' type='text' placeholder={'Add new task to ' + chosenCategory.toUpperCase()} autoFocus/>
         <div className='padding-up-dn-10'>
           <div className='margin-bottom-10 margin-top-20'>Chose other categories</div>
           {this.props.categories.map((i,n) => {
-            if (n !== this.props.slideNum) {
+            if (n !== this.state.slideNum) {
               return <CategoriyItems
                 category={i}
+                key={n}
+
+                handleSlideNum={this._handleSlideNum}
               />
             }
           })}

@@ -65,6 +65,16 @@
   cursor: pointer;
 }
 
+/*  ---  Text transform  ---  */
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
 /*  ---  Margin 5px  ---  */
 
 .margin-5 {
