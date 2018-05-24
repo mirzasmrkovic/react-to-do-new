@@ -65,16 +65,6 @@
   cursor: pointer;
 }
 
-/*  ---  Text transform  ---  */
-
-.uppercase {
-  text-transform: uppercase;
-}
-
-.capitalize {
-  text-transform: capitalize;
-}
-
 /*  ---  Margin 5px  ---  */
 
 .margin-5 {
@@ -183,8 +173,36 @@
   padding: 20px 0px;
 }
 
-/*  --- color  ---  */
+/*  ---  Fonts  ---  */
 
-.dirty-white-bg {
-  background-color: #efefef;
+.lato {
+  font-family: 'Lato', sans-serif;
+}
+
+.raleway {
+  font-family: 'Raleway', sans-serif;
+}
+
+.titillium {
+  font-family: 'Titillium Web', sans-serif;
+}
+
+/*  ---  Text transform  ---  */
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+/*  ---  Font weight  ---  */
+
+.bold-title {
+  font-weight: 700;
+}
+
+.thin-title {
+  font-weight: 300;
 }

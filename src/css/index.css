@@ -59,6 +59,10 @@ a {
   cursor: pointer;
 }
 
+.dirty-white-bg {
+  background-color: #efefef;
+}
+
 #search {
   display: flex;
   margin: 0px 10px;
