@@ -103,6 +103,7 @@ class App extends Component {
           todoBody={this.state.todoBody}
           addTask={this.state.addTask}
 
+          returnBack={this.returnBack}
           handleAddTask={this._handleAddTask}
           closeSearch={this.closeSearch}
           handleTodo={this._handleTodo}

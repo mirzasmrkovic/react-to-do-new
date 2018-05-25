@@ -173,20 +173,6 @@
   padding: 20px 0px;
 }
 
-/*  ---  Fonts  ---  */
-
-.lato {
-  font-family: 'Lato', sans-serif;
-}
-
-.raleway {
-  font-family: 'Raleway', sans-serif;
-}
-
-.titillium {
-  font-family: 'Titillium Web', sans-serif;
-}
-
 /*  ---  Text transform  ---  */
 
 .uppercase {
@@ -205,4 +191,32 @@
 
 .thin-title {
   font-weight: 300;
+}
+
+.title-xxxl {
+  font-size: 1.6em;
+}
+
+.title-xl {
+  font-size: 1.3em;
+}
+
+.title-l {
+  font-size: 1.1em;
+}
+
+.title-m {
+  font-size: .9em;
+}
+
+.title-s {
+  font-size: .8em;
+}
+
+.title.xs {
+  font-size: .7em;
+}
+
+.light-gray {
+  color: #888;
 }
