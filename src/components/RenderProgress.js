@@ -10,7 +10,7 @@ class RenderProgress extends Component {
     return (
       <div className="statusBar">
         <span className="progressBar"><span className="progress" style={progress}></span></span>
-        <span className="percentage">{calculatedPercentage + '%'}</span>
+        <span className="percentage lato">{calculatedPercentage + '%'}</span>
       </div>
     )
   }

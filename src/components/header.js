@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Header extends Component {
   render() {
     return (
-      <div id="header">
+      <div id="header" className='raleway'>
         {!this.props.todoBody ? <div onClick={this.props.handleSearch} className="flex-property margin-left-10 margin-right-10">
           {this.props.openSearch === false ?
             <svg version="1.1" className="searchIcon" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 384 381"  xmlSpace="preserve">
@@ -20,10 +20,10 @@ class Header extends Component {
             </svg>
           </div>
         }
-        <div id="title">
+        <div id="title" className='bold-title uppercase'>
           {this.props.todoBody ? (this.props.addTask ? 'add task' : this.props.categories[this.props.slideNum].category) : 'todo'}
         </div>
-        <div id="menu">
+        <div className="menu cursor-pointer">
           <div className="rectangle"></div>
           <div className="rectangle"></div>
           <div className="rectangle"></div>

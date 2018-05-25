@@ -6,7 +6,7 @@ class TodoItem extends Component {
   }
   render() {
     return (
-      <div className='todo-items'>
+      <div className='todo-items uppercase'>
         <div className='check-container'>
           <div className={(this.props.completed ? 'marked' : '') + ' check-svg-container'}>
             <svg version="1.1" className="checkMark" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" x="0px" y="0px" viewBox="0 0 24 24">

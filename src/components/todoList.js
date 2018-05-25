@@ -17,6 +17,14 @@ class TodoList extends Component {
   }
 
   render() {
+
+    let today = new Date()
+    let dd = today.getDate()
+    let mm = today.getMonth()
+    let yyyy = today.getFullYear()
+    let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    let date = months[mm] + ' ' + dd + ', ' + yyyy
+
     return (
       <div>
         <div id="toDoContainer">
@@ -26,7 +34,7 @@ class TodoList extends Component {
           <div id="taskCount"><TaskNumber tasks={6}/></div>
         </div>
         <div id="variousToDos">
-          <div id="date">
+          <div id="date" className='lato'>
               <span>TODAY: {date.toUpperCase()}</span>
           </div>
           <div id="toDoListContainerSmall">
@@ -55,10 +63,3 @@ class TodoList extends Component {
 }
 
 export default TodoList
-
-let today = new Date()
-let dd = today.getDate()
-let mm = today.getMonth()
-let yyyy = today.getFullYear()
-let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-let date = months[mm] + ' ' + dd + ', ' + yyyy
