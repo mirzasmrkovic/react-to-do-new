@@ -13,8 +13,8 @@ class App extends Component {
     slideNum: 0,
     categories: categories,
     openSearch: false,
-    todoBody: true,
-    addTask: true,
+    todoBody: false,
+    addTask: false,
   }
 
   _handleTodo = () => {

@@ -2,14 +2,6 @@ import React, { Component } from 'react';
 
 import SelectedTodo from './selectedTodo.js'
 
-class TaskNumber extends Component {
-  render(){
-    return(
-      <div id="taskCount"><s>You have {this.props.tasks} tasks todo today.</s></div>
-    )
-  }
-}
-
 class TodoList extends Component {
   openSlide = () => {
     this.props.history.push('/todoList')
@@ -25,13 +17,20 @@ class TodoList extends Component {
     let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
     let date = months[mm] + ' ' + dd + ', ' + yyyy
 
+    let taskCount = 0
+
+    this.props.categories.map((i,n) => {
+      let currentCount = i.incomplete.length
+      taskCount = taskCount + currentCount
+    })
+
     return (
       <div>
         <div id="toDoContainer">
           <img src="alex.jpg" alt='profile-img' id="userAvatarImg"/>
           <div id="userGreet">Hello, Alex.</div>
           <div><s>reminder (add a way to edit reminders)</s></div>
-          <div id="taskCount"><TaskNumber tasks={6}/></div>
+          {taskCount !== 0 ? <div className="taskCount">You have <span className='lato'>{taskCount}</span> incomplete todos.</div> : <div className="taskCount">You have finished all the tasks</div> }
         </div>
         <div id="variousToDos">
           <div id="date" className='lato'>
@@ -39,7 +38,6 @@ class TodoList extends Component {
           </div>
           <div id="toDoListContainerSmall">
             <button className='slideArrows' onClick={this.props.changeSlideLeft}>
-              <div></div>
               <svg version="1.1" className="leftArrow" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" x="0px" y="0px" viewBox="0 0 24 24">
                 <path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z"/>
               </svg>

@@ -9,8 +9,8 @@ class SelectedTodo extends Component {
   }
 
   render() {
-    let complete = this.props.categories[this.props.slideNum].completeTodo.length
-    let incomplete = this.props.categories[this.props.slideNum].incompleteTodo.length
+    let complete = this.props.categories[this.props.slideNum].complete.length
+    let incomplete = this.props.categories[this.props.slideNum].incomplete.length
     let taskSum = complete + incomplete
 
     return (

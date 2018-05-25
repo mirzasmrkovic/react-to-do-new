@@ -15,8 +15,8 @@ class TodoBody extends Component {
       this.props.history.push('/todo')
     }
 
-    let complete = this.props.categories[this.props.slideNum].completeTodo.length
-    let incomplete = this.props.categories[this.props.slideNum].incompleteTodo.length
+    let complete = this.props.categories[this.props.slideNum].complete.length
+    let incomplete = this.props.categories[this.props.slideNum].incomplete.length
     let taskSum = complete + incomplete
 
     return (
@@ -46,7 +46,7 @@ class TodoBody extends Component {
           <div className='unfinishedTodo'>
             <span className='uppercase light-gray bold-title'>Todos to be finished</span>
             <div className='itemContainer'>
-              {this.props.categories[this.props.slideNum].incompleteTodo.map((e,n) =>
+              {this.props.categories[this.props.slideNum].incomplete.map((e,n) =>
                 <TodoItem
                   todoText={e}
                   key={n}
@@ -58,7 +58,7 @@ class TodoBody extends Component {
           <div className='finishedTodo'>
             <span className='uppercase light-gray bold-title'>Finished todos</span>
             <div className='itemContainer'>
-              {this.props.categories[this.props.slideNum].completeTodo.map((e,n) =>
+              {this.props.categories[this.props.slideNum].complete.map((e,n) =>
                 <TodoItem
                   todoText={e}
                   key={n}

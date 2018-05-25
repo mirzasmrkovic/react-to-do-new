@@ -240,7 +240,7 @@ a {
   padding: 5px 0px;
 }
 
-#taskCount {
+.taskCount {
   color: white;
   font-size: 11pt;
   margin-top: 10px;

@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 
 class RenderProgress extends Component {
   render() {
-    let notFinished = this.props.categories[this.props.slideNum].incompleteTodo.length
-    let finished = this.props.categories[this.props.slideNum].completeTodo.length
+    let notFinished = this.props.categories[this.props.slideNum].incomplete.length
+    let finished = this.props.categories[this.props.slideNum].complete.length
     let calculatedPercentage = (finished/(notFinished + finished)*100).toFixed(1)
 
     let progress = {width: calculatedPercentage + '%'}
