@@ -42,7 +42,7 @@ class Routes extends Component {
               slideNum={this.props.slideNum}
               addTask={this.props.addTask}
 
-              returnBack={this.props.returnBack}
+              addNewTask={this.props.addNewTask}
             />}
           ></Route>
         </div>

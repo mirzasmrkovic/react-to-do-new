@@ -15,6 +15,10 @@ a {
   text-decoration: none;
 }
 
+button {
+  display: block;
+}
+
 #root {
   max-width: 420px;
   display: flex;
@@ -472,7 +476,7 @@ a {
   box-shadow: inset 0px 0px 5px 0px rgba(86,114,209,0.5);
 }
 
-input {
+.add-todo-input {
   width: calc(100% - 10px);
   outline: none;
   border: none;
@@ -493,6 +497,7 @@ input {
 }
 
 .add-button {
+  width: 100%;
   border: 1px solid #41a0d6;
   background-color: #5BADDC;
   transition: .1s linear;

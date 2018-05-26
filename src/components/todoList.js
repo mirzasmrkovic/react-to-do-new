@@ -19,8 +19,8 @@ class TodoList extends Component {
 
     let taskCount = 0
 
-    this.props.categories.map((i,n) => {
-      let currentCount = i.incomplete.length
+    Object.keys(this.props.categories).map((i,n) => {
+      let currentCount = this.props.categories[i].incomplete.length
       taskCount = taskCount + currentCount
     })
 
@@ -30,7 +30,7 @@ class TodoList extends Component {
           <img src="alex.jpg" alt='profile-img' id="userAvatarImg"/>
           <div id="userGreet">Hello, Alex.</div>
           <div><s>reminder (add a way to edit reminders)</s></div>
-          {taskCount !== 0 ? <div className="taskCount">You have <span className='lato'>{taskCount}</span> incomplete todos.</div> : <div className="taskCount">You have finished all the tasks</div> }
+          {taskCount !== 0 ? <div className="taskCount">You have <span className='lato'>{taskCount}</span> incomplete tasks.</div> : <div className="taskCount">You have finished all the tasks</div> }
         </div>
         <div id="variousToDos">
           <div id="date" className='lato'>

@@ -82,6 +82,23 @@ class App extends Component {
     })
   }
 
+  addNewTask = (value, slideNum) => {
+    Object.keys(this.state.categories).map(key => {
+      if (Number(key) === slideNum) {
+        this.setState({
+          categories: {
+            ...this.state.categories,
+            [key]: {
+              ...this.state.categories[key],
+              incomplete: [...this.state.categories[key].incomplete, value]
+            }
+          }
+        })
+      }
+    })
+    this.returnBack()
+  }
+
   render() {
     return (
       <div className="page">
@@ -103,7 +120,7 @@ class App extends Component {
           todoBody={this.state.todoBody}
           addTask={this.state.addTask}
 
-          returnBack={this.returnBack}
+          addNewTask={this.addNewTask}
           handleAddTask={this._handleAddTask}
           closeSearch={this.closeSearch}
           handleTodo={this._handleTodo}
