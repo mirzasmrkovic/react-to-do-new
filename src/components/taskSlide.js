@@ -1,9 +1,21 @@
 import React, { Component } from 'react';
 
 class TaskSlide extends Component {
+  state = {
+    closeSlide: false,
+  }
+
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({
+        closeSlide: true,
+      })
+      setTimeout(() => this.props.closeTaskSlide(), 200)
+    }, 3000)
+  }
   render() {
     return (
-      <div onClick={this.props.closeTaskSlide} className='task-slide title-s bold-title uppercase flex-property justify-content-between align-items-center'>
+      <div onClick={this.props.closeTaskSlide} className={(this.state.closeSlide ? 'task-slide-close' : 'task-slide-open') + ' task-slide title-s bold-title uppercase flex-property justify-content-between align-items-center'}>
         <span>You added a new task to {this.props.addedCategory}</span>
         <div className='cursor-pointer'>
           <svg version="1.1" className="xIcon" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 415 409.7"  xmlSpace="preserve">
