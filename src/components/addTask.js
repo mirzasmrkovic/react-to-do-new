@@ -57,7 +57,7 @@ class AddTask extends Component {
     let chosenCategory = this.props.categories[this.state.slideNum].category
 
     return (
-      <form className='dirty-white-bg padding-20'>
+      <form className='dirty-white-bg add-task padding-20'>
         <div className='title-m bold-title uppercase light-gray'>Add a new task to {chosenCategory.toUpperCase()}</div>
         <input
           value={this.state.value}

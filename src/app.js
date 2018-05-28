@@ -6,6 +6,7 @@ import SearchBar from './components/searchbar.js'
 
 import Routes from './routes/routes.js'
 import Header from './components/header.js'
+import TaskSlide from './components/taskSlide.js'
 import {categories} from './json/categories.json'
 
 class App extends Component {
@@ -15,11 +16,18 @@ class App extends Component {
     openSearch: false,
     todoBody: false,
     addTask: false,
+    showTaskPopup: false,
   }
 
   _handleTodo = () => {
     this.setState({
       todoBody: true,
+    })
+  }
+
+  closeTaskSlide = () => {
+    this.setState({
+      showTaskPopup: false,
     })
   }
 
@@ -40,6 +48,7 @@ class App extends Component {
     this.setState({
       addTask: true,
     })
+    this.closeTaskSlide()
   }
 
   changeSlideLeft = () => {
@@ -92,7 +101,8 @@ class App extends Component {
               ...this.state.categories[key],
               incomplete: [...this.state.categories[key].incomplete, value]
             }
-          }
+          },
+          showTaskPopup: slideNum,
         })
       }
     })
@@ -112,8 +122,14 @@ class App extends Component {
           returnBack={this.returnBack}
           handleSearch={this._handleSearch}
         />
+        {this.state.showTaskPopup !== false &&
+          <TaskSlide
+            addedCategory={this.state.categories[this.state.showTaskPopup].category}
+
+            closeTaskSlide={this.closeTaskSlide}
+          />
+        }
         {this.state.openSearch && <SearchBar />}
-        <div className="gradient"></div>
         <Routes
           categories={this.state.categories}
           slideNum={this.state.slideNum}
