@@ -42,6 +42,9 @@ class AddTask extends Component {
     if (this.state.value) {
       this.props.addNewTask(this.state.value, this.state.slideNum)
     }
+    else {
+      this.nameInput.focus()
+    }
     event.preventDefault();
   }
 
@@ -57,7 +60,7 @@ class AddTask extends Component {
     let chosenCategory = this.props.categories[this.state.slideNum].category
 
     return (
-      <form className='dirty-white-bg padding-20'>
+      <form className='dirty-white-bg add-task padding-20'>
         <div className='title-m bold-title uppercase light-gray'>Add a new task to {chosenCategory.toUpperCase()}</div>
         <input
           value={this.state.value}
@@ -92,7 +95,3 @@ class AddTask extends Component {
 
 
 export default AddTask
-
-// <svg version="1.1" className="addIcon" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" x="0px" y="0px" viewBox="0 0 24 24">
-//   <path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/>
-// </svg>
