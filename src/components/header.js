@@ -4,7 +4,7 @@ class Header extends Component {
   render() {
     return (
       <div id="header" className='raleway'>
-        {!this.props.todoBody ? <div onClick={this.props.handleSearch} className="flex-property margin-left-10 margin-right-10">
+        {!this.props.todoBody ? <div onClick={this.props.handleSearch} className="flex-property cursor-pointer margin-left-10 margin-right-10">
           {this.props.openSearch === false ?
             <svg version="1.1" className="searchIcon" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 384 381"  xmlSpace="preserve">
               <path d="M385,360.7L271.7,247.3c20.8-26,33.3-59.1,33.3-95.1C305,68.1,236.9,0,153,0C69,0,1,68.2,1,152.2s68.1,152.2,152,152.2c36.2,0,69.4-12.7,95.5-33.8L361.7,384L385,360.7z M56.8,248.6C31.1,222.9,17,188.7,17,152.3S31.2,81.7,56.8,56s59.9-40,96.2-40s70.5,14.2,96.2,39.9s39.8,59.9,39.8,96.3s-14.2,70.6-39.8,96.3c-25.7,25.7-59.9,39.9-96.2,39.9C116.7,288.5,82.5,274.3,56.8,248.6z"/>
