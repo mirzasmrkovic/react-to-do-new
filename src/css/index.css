@@ -45,13 +45,13 @@ button {
 }
 
 @keyframes TaskSlideAnimation {
-  0% { transform: translateY(-45px); opacity: 0;}
+  0% { transform: translateY(-100%); opacity: 0;}
   100% { transform: translateY(0px); opacity: 1;}
 }
 
 @keyframes TaskSlideClose {
   0% { transform: translateY(0px);  opacity: 1;}
-  100% { transform: translateY(-45px);  opacity: 0;}
+  100% { transform: translateY(-100%);  opacity: 0;}
 }
 
 .task-slide {
