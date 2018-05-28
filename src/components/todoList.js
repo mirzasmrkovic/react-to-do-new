@@ -21,7 +21,7 @@ class TodoList extends Component {
 
     Object.keys(this.props.categories).map((i,n) => {
       let currentCount = this.props.categories[i].incomplete.length
-      taskCount = taskCount + currentCount
+      return taskCount = taskCount + currentCount
     })
 
     return (

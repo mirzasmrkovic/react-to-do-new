@@ -44,20 +44,33 @@ button {
   position: relative;
 }
 
-@keyframes TaskSlideDown {
-  0%   { transform: translateY(-28px); }
-  100% { transform: translateY(0px); }
+@keyframes TaskSlideAnimation {
+  0% { transform: translateY(-45px); opacity: 0;}
+  100% { transform: translateY(0px); opacity: 1;}
+}
+
+@keyframes TaskSlideClose {
+  0% { transform: translateY(0px);  opacity: 1;}
+  100% { transform: translateY(-45px);  opacity: 0;}
 }
 
 .task-slide {
   position: absolute;
   left: 0;
   right: 0;
-  animation: TaskSlideDown .2s linear;
   padding: 10px 20px;
   color: white;
   background-color: #5ab55a;
   box-shadow: inset 0px 5px 25px -15px rgba(0,0,0,0.3);
+}
+
+.task-slide-open {
+  animation: TaskSlideAnimation .2s linear;
+}
+
+.task-slide-close {
+  animation: TaskSlideClose .2s linear;
+  animation-fill-mode: both;
 }
 
 .task-slide .xIcon {
