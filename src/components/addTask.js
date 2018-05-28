@@ -45,6 +45,10 @@ class AddTask extends Component {
     event.preventDefault();
   }
 
+  componentDidUpdate() {
+    this.nameInput.focus()
+  }
+
   render() {
     if (!this.props.addTask) {
       this.props.history.push('/todoList')
@@ -55,7 +59,14 @@ class AddTask extends Component {
     return (
       <form className='dirty-white-bg padding-20'>
         <div className='title-m bold-title uppercase light-gray'>Add a new task to {chosenCategory.toUpperCase()}</div>
-        <input value={this.state.value} onChange={this.handleChange} className='add-todo-input padding-5 margin-top-10' type='text' autoFocus/>
+        <input
+          value={this.state.value}
+          onChange={this.handleChange}
+          ref={(input) => { this.nameInput = input; }}
+          className='add-todo-input padding-5 margin-top-10'
+          type='text'
+          autoFocus
+        />
         <div className='padding-up-dn-10 margin-top-20'>
           <div className='margin-bottom-20 margin-top-5 title-m bold-title uppercase light-gray'>Chose other categories</div>
           {Object.keys(this.props.categories).map((i,n) => {
