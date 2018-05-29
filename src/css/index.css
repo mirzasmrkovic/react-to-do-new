@@ -44,12 +44,12 @@ button {
   position: relative;
 }
 
-@keyframes TaskSlideAnimation {
+@keyframes slideDown {
   0% { transform: translateY(-100%); opacity: 0;}
   100% { transform: translateY(0px); opacity: 1;}
 }
 
-@keyframes TaskSlideClose {
+@keyframes slideUp {
   0% { transform: translateY(0px);  opacity: 1;}
   100% { transform: translateY(-100%);  opacity: 0;}
 }
@@ -64,12 +64,12 @@ button {
   box-shadow: inset 0px 5px 25px -15px rgba(0,0,0,0.3);
 }
 
-.task-slide-open {
-  animation: TaskSlideAnimation .2s linear;
+.slide-down {
+  animation: slideDown .4s linear;
 }
 
-.task-slide-close {
-  animation: TaskSlideClose .2s linear;
+.slide-up {
+  animation: slideUp .4s linear;
   animation-fill-mode: both;
 }
 
@@ -81,6 +81,16 @@ button {
 
 .task-slide .xIcon:hover {
   fill: red;
+}
+
+.menu-container {
+  position: absolute;
+  z-index: 10;
+  top: 48px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: lightblue;
 }
 
 .menu {
@@ -156,8 +166,22 @@ button {
   fill: rgba(111,114,123,0.5);
 }
 
+@keyframes spin {
+  0% { transform: rotate(0deg)}
+  100% { transform: rotate(180deg)}
+}
+
 .xIcon {
   enable-background:new 0 0 415 409.7;
+  animation: spin .2s linear;
+}
+
+.spin-forward {
+  animation: spin .2s linear;
+}
+
+.spin-backwards {
+  animation: spin .2s reverse;
 }
 
 .avatarColor {
@@ -169,6 +193,7 @@ button {
 .backArrow {
   width: 18px;
   height: 18px;
+  padding: 5px;
   fill: rgb(111,114,123);
   transform: rotate(180deg);
   transition: .1s linear;

@@ -2,21 +2,43 @@ import React, { Component } from 'react';
 import './css/index.css'
 import './css/common.css'
 
+import {categories} from './json/categories.json'
+
+
+import Header from './components/header.js'
+import Menu from './components/menu.js'
+import TaskSlide from './components/taskSlide.js'
 import SearchBar from './components/searchbar.js'
 
 import Routes from './routes/routes.js'
-import Header from './components/header.js'
-import TaskSlide from './components/taskSlide.js'
-import {categories} from './json/categories.json'
 
 class App extends Component {
   state = {
     slideNum: 0,
     categories: categories,
+    showTaskPopup: false,
+    menuOpen: false,
+    menuAnimation: false,
     openSearch: false,
     todoBody: false,
     addTask: false,
-    showTaskPopup: false,
+  }
+
+  _handleMenu = () => {
+    if (!this.state.menuOpen) {
+      this.setState({
+        menuOpen: !this.state.menuOpen,
+        menuAnimation: true,
+      })
+    }
+    else {
+      this.closeMenu()
+    }
+  }
+
+  closeMenu = () => {
+    this.setState({menuAnimation: false})
+    setTimeout(() => this.setState({menuOpen: false}), 400)
   }
 
   _handleTodo = () => {
@@ -42,6 +64,7 @@ class App extends Component {
         todoBody: false,
       })
     }
+    this.closeMenu()
   }
 
   _handleAddTask = () => {
@@ -83,6 +106,7 @@ class App extends Component {
         openSearch: !prevState.openSearch,
       }
     })
+    this.closeMenu()
   }
 
   closeSearch = () => {
@@ -118,10 +142,17 @@ class App extends Component {
           openSearch={this.state.openSearch}
           todoBody={this.state.todoBody}
           addTask={this.state.addTask}
+          menuOpen={this.state.menuAnimation}
 
+          handleMenu={this._handleMenu}
           returnBack={this.returnBack}
           handleSearch={this._handleSearch}
         />
+        {this.state.menuOpen && <Menu
+          menuAnimation={this.state.menuAnimation}
+
+          handleMenu={this._handleMenu}
+        />}
         {this.state.showTaskPopup !== false &&
           <TaskSlide
             addedCategory={this.state.categories[this.state.showTaskPopup].category}
