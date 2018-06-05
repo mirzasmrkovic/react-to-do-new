@@ -1,58 +1,71 @@
 import React, { Component } from 'react';
 
-import SelectedTodo from './selectedTodo.js'
+import RenderProgress from './renderProgress.js'
+import CurrentCat from './CurrentCat.js'
+import TodoItem from './todoItem.js'
 
 class TodoList extends Component {
-  openSlide = () => {
-    this.props.history.push('/todoList')
-    this.props.handleTodo()
+  _handleClick = () => {
+    this.props.history.push('/addTodo')
+    this.props.handleAddTask()
   }
 
   render() {
+    if (!this.props.todoBody) {
+      this.props.history.push('/todo')
+    }
 
-    let today = new Date()
-    let dd = today.getDate()
-    let mm = today.getMonth()
-    let yyyy = today.getFullYear()
-    let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-    let date = months[mm] + ' ' + dd + ', ' + yyyy
-
-    let taskCount = 0
-
-    Object.keys(this.props.categories).map((i,n) => {
-      let currentCount = this.props.categories[i].incomplete.length
-      return taskCount = taskCount + currentCount
-    })
+    let complete = this.props.categories[this.props.slideNum].complete.length
+    let incomplete = this.props.categories[this.props.slideNum].incomplete.length
+    let taskSum = complete + incomplete
 
     return (
-      <div>
-        <div id="toDoContainer">
-          <img src="alex.jpg" alt='profile-img' id="userAvatarImg"/>
-          <div id="userGreet">Hello, Alex.</div>
-          <div><s>reminder (add a way to edit reminders)</s></div>
-          {taskCount !== 0 ? <div className="taskCount">You have <span className='lato'>{taskCount}</span> incomplete tasks.</div> : <div className="taskCount">You have finished all the tasks</div> }
-        </div>
-        <div id="variousToDos">
-          <div id="date" className='lato'>
-              <span>TODAY: {date.toUpperCase()}</span>
+      <div className='todo-list'>
+        <div className='todoBodyHeader'>
+          <div className='categoryAvatar'>
+            <svg version="1.1" className="avatarColor" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" x="0px" y="0px" viewBox="0 0 24 24">
+              <path d={this.props.categories[this.props.slideNum].categoryImg}/>
+            </svg>
           </div>
-          <div id="toDoListContainerSmall">
-            <button className='slideArrows' onClick={this.props.changeSlideLeft}>
-              <svg version="1.1" className="leftArrow" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" x="0px" y="0px" viewBox="0 0 24 24">
-                <path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z"/>
-              </svg>
-            </button>
-            <SelectedTodo
-              closeSearch={this.props.closeSearch}
-              openSlide={this.openSlide}
-              categories={this.props.categories}
-              slideNum={this.props.slideNum}
-            />
-            <button className='slideArrows' onClick={this.props.changeSlideRight}>
-              <svg version="1.1" className="rightArrow" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" x="0px" y="0px" viewBox="0 0 24 24">
-                <path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z"/>
-              </svg>
-            </button>
+          <div onClick={this._handleClick} className='add-todo flex-property align-items-center justify-content-center'>
+            <svg version="1.1" className="addIcon" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" x="0px" y="0px" viewBox="0 0 24 24">
+              <path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/>
+            </svg>
+          </div>
+        </div>
+        <div className='toDoLists'>
+          <div className='numOfTasks'>{taskSum} tasks</div>
+          <div className='categoryName'><CurrentCat/></div>
+          <RenderProgress
+            openSlide={this.openSlide}
+            categories={this.props.categories}
+            slideNum={this.props.slideNum}
+          />
+        </div>
+        <div className='listOfTodos'>
+          <div className='unfinishedTodo'>
+            <span className='uppercase light-gray bold-title'>Todos to be finished</span>
+            <div className='itemContainer'>
+              {this.props.categories[this.props.slideNum].incomplete.map((e,n) =>
+                <TodoItem
+                  todoText={e}
+                  key={n}
+                  completed={false}
+                />
+              )}
+            </div>
+          </div>
+          <div className='finishedTodo'>
+            <span className='uppercase light-gray bold-title'>Finished todos</span>
+            <div className='itemContainer'>
+              {this.props.categories[this.props.slideNum].complete.map((e,n) =>
+                <TodoItem
+                  todoText={e}
+                  key={n}
+                  completed={true}
+                />
+              )}
+            </div>
           </div>
         </div>
       </div>
