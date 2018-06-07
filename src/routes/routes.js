@@ -33,6 +33,8 @@ class Routes extends Component {
               categories={this.props.categories}
 
               handleAddTask={this.props.handleAddTask}
+              removeTask={this.props.removeTask}
+              handleTask={this.props.handleTask}
             />}
           ></Route>
           <Route path='/addTodo'
@@ -41,7 +43,6 @@ class Routes extends Component {
               categories={this.props.categories}
               slideNum={this.props.slideNum}
               addTask={this.props.addTask}
-
               addNewTask={this.props.addNewTask}
             />}
           ></Route>

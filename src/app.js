@@ -24,6 +24,22 @@ class App extends Component {
     addTask: false,
   }
 
+  onChange = () => {
+		localStorage.setItem('todo', JSON.stringify(this.state.categories))
+	}
+
+	loadStorage = () => {
+		let getItemStorage  = JSON.parse(localStorage.getItem('todo'))
+    if (Boolean(localStorage.getItem('todo'))) {
+      this.setState({
+        categories: {...getItemStorage}
+      })
+    }
+    else {
+      this.onChange()
+    }
+	}
+
   _handleMenu = () => {
     if (!this.state.menuOpen) {
       this.setState({
@@ -115,7 +131,7 @@ class App extends Component {
     })
   }
 
-  addNewTask = (value, slideNum) => {
+  addNewTask = (value, slideNum, complete, itemNum) => {
     Object.keys(this.state.categories).map(key => {
       if (Number(key) === slideNum) {
         this.setState({
@@ -125,12 +141,75 @@ class App extends Component {
               ...this.state.categories[key],
               incomplete: [...this.state.categories[key].incomplete, value]
             }
-          },
-          showTaskPopup: slideNum,
-        })
+          }
+        },
+        () => {
+          if (complete !== undefined) {
+            this.removeTask(slideNum, complete, itemNum)
+          }
+        }
+      )
       }
     })
-    this.returnBack()
+    if (!complete) {
+      this.setState({showTaskPopup: slideNum})
+      this.returnBack()
+    }
+  }
+
+  removeTask = (key, complete, itemNum) => {
+    let taskStatus
+    if (!complete) {
+      taskStatus = 'incomplete'
+    }
+    else {
+      taskStatus = 'complete'
+    }
+    let updatedTasks = this.state.categories[key][taskStatus]
+    updatedTasks.splice(itemNum, 1)
+    this.setState({
+      categories: {
+        ...this.state.categories,
+        [key]: {
+          ...this.state.categories[key],
+          [taskStatus]: updatedTasks
+        }
+      }
+    }, () => this.onChange())
+  }
+
+  handleTask = (itemNum, complete) => {
+    let task
+    if (complete) {
+      task = this.state.categories[this.state.slideNum].complete[itemNum]
+    }
+    else {
+      task = this.state.categories[this.state.slideNum].incomplete[itemNum]
+    }
+    if (!complete) {
+      Object.keys(this.state.categories).map(key => {
+        if (Number(key) === this.state.slideNum) {
+          this.setState({
+            categories: {
+              ...this.state.categories,
+              [key]: {
+                ...this.state.categories[key],
+                complete: [...this.state.categories[key].complete, task]
+              }
+            }
+          },
+          () => this.removeTask(key, complete, itemNum)
+          )
+        }
+      })
+    }
+    else {
+      this.addNewTask(task, this.state.slideNum, complete, itemNum)
+    }
+  }
+
+  componentWillMount() {
+    this.loadStorage()
   }
 
   render() {
@@ -173,6 +252,9 @@ class App extends Component {
           handleTodo={this._handleTodo}
           changeSlideLeft={this.changeSlideLeft}
           changeSlideRight={this.changeSlideRight}
+
+          removeTask={this.removeTask}
+          handleTask={this.handleTask}
         />
       </div>
     );

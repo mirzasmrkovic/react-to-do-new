@@ -49,8 +49,13 @@ class TodoList extends Component {
               {this.props.categories[this.props.slideNum].incomplete.map((e,n) =>
                 <TodoItem
                   todoText={e}
-                  key={n}
+                  key={e+n}
+                  num={n}
+                  slideNum={this.props.slideNum}
                   completed={false}
+
+                  removeTask={this.props.removeTask}
+                  handleTask={this.props.handleTask}
                 />
               )}
             </div>
@@ -61,8 +66,13 @@ class TodoList extends Component {
               {this.props.categories[this.props.slideNum].complete.map((e,n) =>
                 <TodoItem
                   todoText={e}
-                  key={n}
+                  key={e+n}
+                  num={n}
+                  slideNum={this.props.slideNum}
                   completed={true}
+
+                  removeTask={this.props.removeTask}
+                  handleTask={this.props.handleTask}
                 />
               )}
             </div>
